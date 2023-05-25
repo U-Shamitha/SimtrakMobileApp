@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "453869389720",
+    "project_id": "simtrak-5fbda",
+    "storage_bucket": "simtrak-5fbda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453869389720:android:4e61ccce4f4a8cef020ded",
+        "android_client_info": {
+          "package_name": "com.mad_lab.a1_loginpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453869389720-9vj95elh5jpr8oogfg7sv6dhvdtc86gk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mad_lab.a1_loginpage",
+            "certificate_hash": "3211daa988beb00361e3339b5f899353e9d1b135"
+          }
+        },
+        {
+          "client_id": "453869389720-daud1o5h6jmd1mocd551fn730uucjq0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4eJ6T81bSO2aROPDTuHWfTsky0z9_T4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453869389720-daud1o5h6jmd1mocd551fn730uucjq0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

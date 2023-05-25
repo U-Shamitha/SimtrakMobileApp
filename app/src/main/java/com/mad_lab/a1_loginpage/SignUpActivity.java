@@ -1,0 +1,106 @@
+package com.mad_lab.a1_loginpage;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class SignUpActivity extends AppCompatActivity {
+
+    private EditText name_et;
+    private EditText email_et;
+    private EditText password_et;
+    private Button signup_bt;
+    private Button login_bt;
+    public static String loggedInUserEmail;
+
+    FirebaseAuth auth;
+    public static FirebaseDatabase database;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_up);
+
+
+        if(getApplicationContext().getSharedPreferences("login_details", Context.MODE_PRIVATE).getBoolean("isLogin", false)){
+            loggedInUserEmail = getApplicationContext().getSharedPreferences("login_details", Context.MODE_PRIVATE).getString("userEmail","");
+            if(!loggedInUserEmail.equals("")) {
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+            }
+        }
+
+        name_et = findViewById(R.id.name_et_signup);
+        email_et = findViewById(R.id.email_et_signup);
+        password_et = findViewById(R.id.password_et_signup);
+        signup_bt = findViewById(R.id.signup_bt);
+        login_bt = findViewById(R.id.login_bt);
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+        signup_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                Toast.makeText(SignUpActivity.this, "signup button clicked", Toast.LENGTH_SHORT).show();
+
+                String name = name_et.getText().toString().trim();
+                String email = email_et.getText().toString().trim();
+                String password = password_et.getText().toString().trim();
+
+                if(name.isEmpty()){
+                    name_et.setError("Name cannot be empty");
+                }
+                else if(email.isEmpty()){
+                    email_et.setError("Email cannot be empty");
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    email_et.setError("Please enter valid email");
+                }
+                else if(password.isEmpty()){
+                    password_et.setError("Password cannot be empty");
+                }
+                else if(password.length()<6){
+                    password_et.setError("Password should be at least 6 characters long");
+                }
+                else{
+
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Toast.makeText(SignUpActivity.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
+                                    database.getReference("Users").child(email.split("@")[0]).setValue(new Users(name, email));
+                                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                }
+                            });
+
+                }
+
+            }
+        });
+
+
+        login_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            }
+        });
+    }
+}

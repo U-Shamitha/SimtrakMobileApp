@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/dashboard"
+          android:icon="@drawable/ic_baseline_home_24"
+        android:title="Dashboard"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/trainees"
+        android:icon="@drawable/trainees"
+        android:title="Trainees"/>
+    <item android:id="@+id/task_management"
+        android:icon="@drawable/ic_baseline_add_task_24"
+        android:title="Task Management"/>
+    <item android:id="@+id/wfh"
+        android:icon="@drawable/ic_baseline_laptop_mac_24"
+        android:title="Work From Home"/>
+    <item android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile"/>
+    <item android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_power_settings_new_24"
+        android:title="Logout"/>
+
+</menu>
