@@ -3,15 +3,19 @@ package com.mad_lab.a1_loginpage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +27,8 @@ public class DashboardActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
+    SearchView searchTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,8 @@ public class DashboardActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.dasboard_toolbar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
+
+        searchTask = findViewById(R.id.search_task);
 
         setSupportActionBar(toolbar);
 
@@ -70,6 +78,21 @@ public class DashboardActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //Search bar
+        searchTask.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                //                Toast.makeText(LoginActivity.this, "on click email", Toast.LENGTH_SHORT).show();
+                if(b){
+                    searchTask.setBackgroundResource(R.drawable.round_border_primary_color);
+                }else{
+                    searchTask.setBackgroundResource(R.drawable.round_border);
+                }
+//                searchTask.setBackgroundTintList(ColorStateList.valueOf(color));
+            }
+        });
+
 
     }
 
