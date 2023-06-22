@@ -27,53 +27,79 @@
 <!--        android:background="@drawable/ic_wave1"/>-->
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="40dp"
-            >
-            <ImageView
-                android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="-15dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loginLaView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:lottie_rawRes="@raw/login"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/simtrak_logo" />
+                android:layout_marginVertical="35dp"
+                android:fontFamily="@font/alegreya"
+                android:text="LOGIN"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/wave2"
             android:gravity="center"
-            android:layout_marginTop="150dp"
-            android:background="@drawable/wave2">
+            android:orientation="vertical">
 
-            <FrameLayout
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="vertical">
+
+                <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_horizontal"-->
-<!--                    android:translationZ="8dp"-->
-<!--                    android:background="@drawable/round_border">-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:translationZ="8dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="15dp">
 
                 <ImageView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_baseline_login_24"
-                    app:tint="@color/white"
+                    android:src="@drawable/simtrak_logo"
                     android:translationZ="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/round_border"
-                    android:backgroundTint="@color/my_primary_color"
                     android:padding="8dp"
                 />
 
-<!--                </androidx.cardview.widget.CardView>-->
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="40dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="24dp"
                 app:cardCornerRadius="8dp"
                 app:cardBackgroundColor="@color/white"
                 android:elevation="8dp"
@@ -86,7 +112,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="40dp">
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginHorizontal="30dp">
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -99,6 +127,7 @@
                         android:textColorHint="@color/dark_grey"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         app:boxStrokeColor="@color/my_primary_color"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -136,6 +165,26 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="8dp">
+
+                        <TextView
+                            android:id="@+id/forgotPwd_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textColor="@color/my_primary_color"
+                            android:text="Forgot Password!"/>
+
+                    </LinearLayout>
+
                     <!--            <EditText-->
                     <!--                android:id="@+id/email_et_login"-->
                     <!--                android:layout_width="match_parent"-->
@@ -155,61 +204,98 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="20dp"
                         >
 
                         <Button
                             android:id="@+id/login_bt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="200dp"
+                            android:layout_height="60dp"
                             android:text="Login"
-                            android:layout_margin="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"/>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
 
                     <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/my_primary_color"
-                    android:text="Not a user?Sign Up"/>
+                    android:text="Not a user? "/>
+
+                    <TextView
+                        android:id="@+id/signUp_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@color/my_primary_color"
+                        android:text="Sign Up"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
+
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="380dp"
-                android:translationZ="10dp">
-
-                <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="fitCenter"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/round_border"
-                    android:src="@drawable/google_icon"/>
-                <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="fitCenter"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/round_border"
-                    android:src="@drawable/facebbok_icon1"/>
-                <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="fitCenter"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/round_border"
-                    android:src="@drawable/twitter_icon"/>
-
-            </LinearLayout>
-
             </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="20dp">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/round_icon"
+                            android:src="@drawable/google_icon"/>
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/round_icon"
+                            android:src="@drawable/facebbok_icon1"/>
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/round_icon"
+                            android:src="@drawable/twitter_icon"/>
+
+                        <ImageButton
+                            android:id="@+id/mic"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="15dp"
+                            android:padding="10dp"
+                            android:background="@drawable/round_icon"
+                            android:backgroundTint="@color/my_primary_color"
+                            android:src="@drawable/baseline_mic_24"
+                            app:tint="@color/white"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
 
         </LinearLayout>
 

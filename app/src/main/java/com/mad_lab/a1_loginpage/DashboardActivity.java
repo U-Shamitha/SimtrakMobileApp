@@ -7,7 +7,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -16,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -27,8 +34,6 @@ public class DashboardActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
-    SearchView searchTask;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +43,6 @@ public class DashboardActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
 
-        searchTask = findViewById(R.id.search_task);
-
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,6 +51,8 @@ public class DashboardActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        loadFragment();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,33 +71,26 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else if(itemId==R.id.profile){
                     Toast.makeText(DashboardActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                    loadFragment(new ProfileFragment());
                 }
                 else if(itemId==R.id.logout){
-                    Toast.makeText(DashboardActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DashboardActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("login_details", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isLogin",false);
+                    editor.apply();
+                    startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
                 }
                 else{
-                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
+                    loadFragment(new DashboardHomeFragment());
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
-        //Search bar
-        searchTask.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                //                Toast.makeText(LoginActivity.this, "on click email", Toast.LENGTH_SHORT).show();
-                if(b){
-                    searchTask.setBackgroundResource(R.drawable.round_border_primary_color);
-                }else{
-                    searchTask.setBackgroundResource(R.drawable.round_border);
-                }
-//                searchTask.setBackgroundTintList(ColorStateList.valueOf(color));
-            }
-        });
-
 
     }
 
@@ -103,6 +101,7 @@ public class DashboardActivity extends AppCompatActivity {
         }else{
             super.onBackPressed();
         }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,5 +136,20 @@ public class DashboardActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    }
+
+    public void loadFragment(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+//        ft.replace(R.id.dashboardFragment_container, new DashboardHomeFragment());
+        ft.replace(R.id.dashboardFragment_container, new ProfileProfile3Fragment());
+        ft.commit();
+    }
+
+    public void loadFragment(Fragment fragment){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.dashboardFragment_container, fragment);
+        ft.commit();
     }
 }

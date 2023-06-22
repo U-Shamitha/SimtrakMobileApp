@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">1_LoginPage</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <!-- Strings used for fragments for navigation -->
@@ -13,4 +13,40 @@
 
     <string name="OpenDrawer">Open navigation drawer</string>
     <string name="CloseDrawer">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Task Filter AutoCompleteTextView-->
+    <string-array name="taskFilters">
+        <item>Add Task</item>
+        <item>WR Slot</item>
+        <item>Internship Extension</item>
+        <item>Upload Photo</item>
+        <item>All tasks</item>
+        <item>Ongoing tasks</item>
+        <item>Completed tasks</item>
+        <item>Paused tasks</item>
+        <item>Purged tasks</item>
+        <item>All tasks</item>
+        <item>Recurring tasks</item>
+        <item>Leave</item>
+        <item>My learnings</item>
+        <item>Profile</item>
+        <item>Certificates</item>
+        <item>Journal</item>
+        <item>Reviews</item>
+        <item>Overall data</item>
+    </string-array>
+
+    <!--    Task Proirities Spinner list-->
+    <string-array name="taskPrioritiesList">
+        <item>--Select Priority--</item>
+        <item>Preferred priority</item>
+        <item>Urgent (within 0-2 days)</item>
+        <item>Other priorities</item>
+        <item>Medium urgency (within 3-7 days)</item>
+        <item>Not urgent (over 7 days)</item>
+    </string-array>
+
+
 </resources>

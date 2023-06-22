@@ -5,27 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText name_et;
-    private EditText email_et;
-    private EditText password_et;
+    private TextInputLayout name_tl;
+    private TextInputLayout email_tl;
+    private TextInputLayout password_tl;
+    private TextInputEditText name_et;
+    private TextInputEditText email_et;
+    private TextInputEditText password_et;
     private Button signup_bt;
-    private Button login_bt;
+    private TextView login_tv;
     public static String loggedInUserEmail;
 
     FirebaseAuth auth;
@@ -34,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_up2);
 
 
         if(getApplicationContext().getSharedPreferences("login_details", Context.MODE_PRIVATE).getBoolean("isLogin", false)){
@@ -44,14 +52,62 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }
 
-        name_et = findViewById(R.id.name_et_signup);
+        name_tl = findViewById(R.id.userName_tl_signup);
+        email_tl = findViewById(R.id.email_tl_signup);
+        password_tl = findViewById(R.id.password_tl_signup);
+        name_et = findViewById(R.id.userName_et_signup);
         email_et = findViewById(R.id.email_et_signup);
         password_et = findViewById(R.id.password_et_signup);
         signup_bt = findViewById(R.id.signup_bt);
-        login_bt = findViewById(R.id.login_bt);
+        login_tv = findViewById(R.id.login_tv);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        name_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+//                Toast.makeText(LoginActivity.this, "on click email", Toast.LENGTH_SHORT).show();
+                int color;
+                if(b){
+                    color = Color.parseColor("#0099ff");
+                }else{
+                    color = Color.parseColor("#808080");
+                }
+                name_tl.setStartIconTintList(ColorStateList.valueOf(color));
+                name_tl.setHintTextColor(ColorStateList.valueOf(color));
+
+            }
+        });
+        email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+//                Toast.makeText(LoginActivity.this, "on click email", Toast.LENGTH_SHORT).show();
+                int color;
+                if(b){
+                    color = Color.parseColor("#0099ff");
+                }else{
+                    color = Color.parseColor("#808080");
+                }
+                email_tl.setStartIconTintList(ColorStateList.valueOf(color));
+                email_tl.setHintTextColor(ColorStateList.valueOf(color));
+
+            }
+        });
+        password_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+//                Toast.makeText(LoginActivity.this, "on click email", Toast.LENGTH_SHORT).show();
+                int color;
+                if(b){
+                    color = Color.parseColor("#0099ff");
+                }else{
+                    color = Color.parseColor("#808080");
+                }
+                password_tl.setEndIconTintList(ColorStateList.valueOf(color));
+                password_tl.setHintTextColor(ColorStateList.valueOf(color));
+            }
+        });
 
         signup_bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +152,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-        login_bt.setOnClickListener(new View.OnClickListener() {
+        login_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
