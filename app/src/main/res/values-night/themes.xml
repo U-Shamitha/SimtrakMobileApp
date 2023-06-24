@@ -1,18 +1,66 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.1_LoginPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/my_primary_color</item>
-        <item name="colorPrimaryVariant">@color/my_primary_color</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/my_primary_color</item>
-        <item name="colorSecondaryVariant">@color/my_primary_color</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/my_primary_color</item>
-        <!-- Customize your theme here. -->
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+<!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+<!--    <style name="Theme.1_LoginPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/my_primary_color</item>-->
+<!--        <item name="colorPrimaryVariant">@color/my_primary_color</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/my_primary_color</item>-->
+<!--        <item name="colorSecondaryVariant">@color/my_primary_color</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">@color/my_primary_color</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
 
-        <item name="android:textColorHint">@color/dark_grey</item>
-    </style>
+<!--        <item name="android:textColorHint">@color/dark_grey</item>-->
+<!--    </style>-->
+<!--</resources>-->
+
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!-- Base application theme. -->
+<style name="Theme.1_LoginPage" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/my_primary_color</item>
+    <item name="colorPrimaryVariant">@color/my_primary_color</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/dark_grey</item>
+    <item name="colorSecondaryVariant">@color/dark_grey</item>
+    <item name="colorOnSecondary">@color/white</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor" tools:targetApi="l">@color/my_primary_color</item>
+    <!-- Customize your theme here. -->
+
+    <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+</style>
+
+<style name="Theme.1_LoginPage.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
+
+<style name="Theme.1_LoginPage.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+<style name="Theme.1_LoginPage.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+<style name="MyToolbarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="android:textColorSecondary">@color/my_primary_color</item>
+</style>
+
+<style name="MySearchBarTheme" >
+    <item name="colorSecondary">@color/my_primary_color</item>
+</style>
+
+<style name="TextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <item name="boxStrokeColor">@color/text_layout_color</item>
+</style>
+
+<style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+    <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+    <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+    <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+    <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+</style>
+
 </resources>

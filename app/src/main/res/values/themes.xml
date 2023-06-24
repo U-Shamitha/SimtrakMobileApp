@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.1_LoginPage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.1_LoginPage" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/my_primary_color</item>
         <item name="colorPrimaryVariant">@color/my_primary_color</item>
@@ -24,7 +24,7 @@
     <style name="Theme.1_LoginPage.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.1_LoginPage.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="MyToolbarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="MyToolbarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:textColorSecondary">@color/my_primary_color</item>
     </style>
 
