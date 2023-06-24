@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage;
+package com.mad_lab.a1_loginpage.fragments.dashboard.profile;
 
 import android.animation.LayoutTransition;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mad_lab.a1_loginpage.ProfileDetailsListViewAdapter;
+import com.mad_lab.a1_loginpage.ProfileDetailsModel;
+import com.mad_lab.a1_loginpage.R;
 
 import java.util.ArrayList;
 

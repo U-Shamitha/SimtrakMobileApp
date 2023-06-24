@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage;
+package com.mad_lab.a1_loginpage.fragments.dashboard;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.TaskPrioritySpinnerAdapter;
 import com.mad_lab.a1_loginpage.inventory.Priority;
 import com.mad_lab.a1_loginpage.inventory.PriorityData;
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;

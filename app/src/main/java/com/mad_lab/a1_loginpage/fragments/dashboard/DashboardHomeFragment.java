@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage;
+package com.mad_lab.a1_loginpage.fragments.dashboard;
 
 import android.os.Bundle;
 
@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+
+import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.RecyclerTaskDetailsAdapter;
+import com.mad_lab.a1_loginpage.TaskDetailsModel;
 
 import java.util.ArrayList;
 

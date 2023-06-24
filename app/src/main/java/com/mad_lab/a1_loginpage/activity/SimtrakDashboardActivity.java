@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage;
+package com.mad_lab.a1_loginpage.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

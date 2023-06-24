@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SimtrakDashboardActivity">
+    tools:context=".activity.SimtrakDashboardActivity">
 
     <WebView
         android:id="@+id/simtrak_dashboard_webView"

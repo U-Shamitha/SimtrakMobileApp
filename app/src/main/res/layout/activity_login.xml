@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/slg3"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
 
 
     <FrameLayout
@@ -277,17 +277,17 @@
                             android:background="@drawable/round_icon"
                             android:src="@drawable/twitter_icon"/>
 
-                        <ImageButton
-                            android:id="@+id/mic"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:scaleType="fitCenter"
-                            android:layout_margin="15dp"
-                            android:padding="10dp"
-                            android:background="@drawable/round_icon"
-                            android:backgroundTint="@color/my_primary_color"
-                            android:src="@drawable/baseline_mic_24"
-                            app:tint="@color/white"/>
+<!--                        <ImageButton-->
+<!--                            android:id="@+id/mic"-->
+<!--                            android:layout_width="60dp"-->
+<!--                            android:layout_height="60dp"-->
+<!--                            android:scaleType="fitCenter"-->
+<!--                            android:layout_margin="15dp"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:background="@drawable/round_icon"-->
+<!--                            android:backgroundTint="@color/my_primary_color"-->
+<!--                            android:src="@drawable/baseline_mic_24"-->
+<!--                            app:tint="@color/white"/>-->
 
                     </LinearLayout>
 

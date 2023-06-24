@@ -11,13 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.1_LoginPage">
         <activity
-            android:name=".SimtrakDashboardActivity"
+            android:name=".activity.SimtrakDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".activity.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +27,10 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:exported="false"/>
 
         <meta-data

@@ -42,6 +42,7 @@
 <!--                android:layout_height="wrap_content">-->
 
             <TextView
+                android:id="@+id/selected_page_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -49,7 +50,7 @@
                 android:layout_toRightOf="@id/dasboard_toolbar"
                 android:fontFamily="@font/buenard"
                 android:paddingBottom="2dp"
-                android:text="Your Profile"
+                android:text=""
                 android:textColor="@color/my_primary_color"
                 android:textSize="24sp" />
 

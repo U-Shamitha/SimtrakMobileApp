@@ -2,9 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_home_24"
+    <item android:id="@+id/home"
+          android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
         app:actionLayout="@layout/nav_arrow"/>
 
@@ -29,7 +28,7 @@
 
     </item>
 
-    <group android:id="@+id/trainees_grp" android:visible="false">
+    <group android:id="@+id/trainees_grp">
 
         <item
             android:id="@+id/daily_journal"

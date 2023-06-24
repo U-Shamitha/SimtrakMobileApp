@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
+        android:translationZ="5dp"
+        app:cardCornerRadius="7dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="23-06-23"
+                    android:textColor="@color/my_primary_color"
+                    android:textSize="18sp" />
+                
+                <RatingBar
+                    android:id="@+id/ratingOfDay"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"/>
+
+<!--                <Button-->
+<!--                    android:id="@+id/menu"-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@drawable/ic_baseline_more_vert_24" />-->
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="15dp">
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="11dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="ID"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/id_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="id"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Assigned Date"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/assignedDate_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="assigned date"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Deadline"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/deadline_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="deadline"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Assigned By"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/assignedBy_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="assigned by"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage;
+package com.mad_lab.a1_loginpage.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,18 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.mad_lab.a1_loginpage.R;
 
 import java.util.ArrayList;
 
@@ -67,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         password_tl = findViewById(R.id.password_tl);
         loginLaView = findViewById(R.id.loginLaView);
         signup_tv = findViewById(R.id.signUp_tv);
-        mic_ib = findViewById(R.id.mic);
+//        mic_ib = findViewById(R.id.mic);
 
         SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences("login_details", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
@@ -177,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                finish();
             }
         });
         login_bt.setOnClickListener(new View.OnClickListener() {
@@ -207,8 +206,8 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("userEmail",email);
                                     editor.apply();
                                     SignUpActivity.loggedInUserEmail= email;
-//                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+//                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
                                     finish();
                                 }
                             })
@@ -222,12 +221,12 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        mic_ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openVoiceDialog();
-            }
-        });
+//        mic_ib.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openVoiceDialog();
+//            }
+//        });
 
     }
 

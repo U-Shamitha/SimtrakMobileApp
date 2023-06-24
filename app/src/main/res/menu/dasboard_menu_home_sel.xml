@@ -2,13 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/home"
+    <item android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
         app:actionLayout="@layout/nav_arrow"/>
 
-    <group android:id="@+id/home_grp" android:visible="false">
+    <group android:id="@+id/home_grp">
 
         <item
             android:id="@+id/dashboard"
