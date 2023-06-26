@@ -13,26 +13,19 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
-import com.mad_lab.a1_loginpage.fragments.dashboard.DashboardAddTaskFragment;
-import com.mad_lab.a1_loginpage.fragments.dashboard.DashboardHomeFragment;
-import com.mad_lab.a1_loginpage.fragments.dashboard.ProfileFragment;
-import com.mad_lab.a1_loginpage.fragments.dashboard.profile.ProfileProfile3Fragment;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
+import com.mad_lab.a1_loginpage.fragments.home.DashboardHomeFragment;
+import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.JournalFragment;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -129,8 +122,12 @@ public class DashboardActivity extends AppCompatActivity {
                         isTraineesSelected= false;
                     }
                 }
-              else if(itemId==R.id.daily_journal){
-                  Toast.makeText(DashboardActivity.this, "Daily journal", Toast.LENGTH_SHORT).show();
+                else if(itemId==R.id.daily_journal){
+                  selected_page_tv.setText("Daily Journal");
+                  loadFragment(new JournalFragment());
+                }else if(itemId==R.id.add_journal){
+                  selected_page_tv.setText("Add Journal");
+                  loadFragment(new AddJournalFragment());
               }
                 else if(itemId==R.id.task_management){
                     Toast.makeText(DashboardActivity.this, "Management", Toast.LENGTH_SHORT).show();
@@ -158,11 +155,23 @@ public class DashboardActivity extends AppCompatActivity {
                 }
 
                 if(itemId!=R.id.home && itemId!=R.id.trainees_main){
+                    AsyncTask a = new AsyncTask() {
+                        @Override
+                        protected Object doInBackground(Object[] objects) {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Object o) {
+                            super.onPostExecute(o);
+                            navigationView.getMenu().clear();
+                            navigationView.inflateMenu(R.menu.dasboard_menu_items);
+                        }
+                    };
+                    a.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
                     isHomeSelected = false;
                     isTraineesSelected = false;
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    navigationView.getMenu().clear();
-                    navigationView.inflateMenu(R.menu.dasboard_menu_items);
                 }
 
                 return true;

@@ -49,4 +49,31 @@
     </string-array>
 
 
+
+    <!--    Add Journal *************************************************************************************************************-->
+
+    <!--    Task Topic Spinner List-->
+    <string-array name="taskTopicSpinnerList">
+        <item>Task1</item>
+        <item>Task2</item>
+        <item>Task3</item>
+    </string-array>
+
+    <!--    Rating Spinner List-->
+    <string-array name="ratingSpinnerLsit">
+        <item>  1</item>
+        <item>  2</item>
+        <item>  3</item>
+        <item>  4</item>
+        <item>  5</item>
+    </string-array>
+
+    <!--    Task Status spinner list-->
+    <string-array name="taskStatusSpinnerList">
+        <item>Ongoing</item>
+        <item>Complete</item>
+        <item>Purged</item>
+        <item>Paused</item>
+    </string-array>
+
 </resources>

@@ -1,23 +1,19 @@
-package com.mad_lab.a1_loginpage.fragments.dashboard.profile;
+package com.mad_lab.a1_loginpage.fragments.profile;
 
-import android.animation.LayoutTransition;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mad_lab.a1_loginpage.ProfileDetailsListViewAdapter;
-import com.mad_lab.a1_loginpage.ProfileDetailsModel;
+import com.mad_lab.a1_loginpage.adapter.ProfileDetailsListViewAdapter;
+import com.mad_lab.a1_loginpage.model.ProfileDetailsModel;
 import com.mad_lab.a1_loginpage.R;
 
 import java.util.ArrayList;

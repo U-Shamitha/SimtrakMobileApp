@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage.fragments.dashboard;
+package com.mad_lab.a1_loginpage.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,9 +17,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.mad_lab.a1_loginpage.AllTasksFragment;
 import com.mad_lab.a1_loginpage.R;
-import com.mad_lab.a1_loginpage.fragments.dashboard.DashboardAddTaskFragment;
+import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
 
 public class ProfileFragment extends Fragment {
 

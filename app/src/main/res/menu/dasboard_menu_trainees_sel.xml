@@ -35,6 +35,11 @@
             android:title="Daily Journal"
             android:icon="@drawable/ic_baseline_edit_note_24"/>
 
+        <item
+            android:id="@+id/add_journal"
+            android:title="Upload Journal"
+            android:icon="@drawable/ic_baseline_add_box_24"/>
+
     </group>
 
     <item

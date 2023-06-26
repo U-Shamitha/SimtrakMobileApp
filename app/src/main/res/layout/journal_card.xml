@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginVertical="10dp"
         android:elevation="5dp"
         android:translationZ="5dp"
         app:cardCornerRadius="7dp"
@@ -32,21 +32,23 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/name_tv"
+                    android:id="@+id/date_tv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:text="23-06-23"
                     android:textColor="@color/my_primary_color"
                     android:textSize="18sp" />
                 
                 <RatingBar
                     android:id="@+id/ratingOfDay"
-                    android:layout_width="250dp"
+                    android:layout_width="230dp"
                     android:layout_height="40dp"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:layout_centerVertical="true"
+                    android:numStars="5"
+                    android:scaleX="0.4"
+                    android:scaleY="0.4"
+                    android:layout_marginRight="-45dp"
+                    android:layout_marginTop="-4dp"
                     android:layout_alignParentRight="true"/>
 
 <!--                <Button-->
@@ -90,7 +92,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/id_tv"
+                            android:id="@+id/journalId_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
                             android:text="id"
@@ -105,15 +107,48 @@
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Assigned Date"
+                            android:text="Status"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/status_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="in-process  "
+                            android:textColor="#051EAA"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/process"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Report"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/assignedDate_tv"
+                            android:id="@+id/report_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="assigned date"
+                            android:text="your report"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 
@@ -126,15 +161,15 @@
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Deadline"
+                            android:text="Learnings"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/deadline_tv"
+                            android:id="@+id/learnings_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="deadline"
+                            android:text="your learnings"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 
@@ -147,15 +182,57 @@
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Assigned By"
+                            android:text="Pendings"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/assignedBy_tv"
+                            android:id="@+id/pendings_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="assigned by"
+                            android:text="your pendings"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Admin Remarks"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/adminRemarks_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="your admin remarks"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Leader Remarks"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/leaderRemarks_tv"
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="your leader remarks"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 

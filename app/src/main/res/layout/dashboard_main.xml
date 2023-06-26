@@ -33,7 +33,8 @@
                 android:layout_height="wrap_content"
                 app:title=" "
                 android:theme="@style/MyToolbarTheme"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                app:layout_scrollFlags = "scroll|enterAlways">
 
             </androidx.appcompat.widget.Toolbar>
 

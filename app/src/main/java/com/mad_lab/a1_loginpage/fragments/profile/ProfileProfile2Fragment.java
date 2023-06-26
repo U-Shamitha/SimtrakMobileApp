@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage.fragments.dashboard.profile;
+package com.mad_lab.a1_loginpage.fragments.profile;
 
 import android.os.Bundle;
 

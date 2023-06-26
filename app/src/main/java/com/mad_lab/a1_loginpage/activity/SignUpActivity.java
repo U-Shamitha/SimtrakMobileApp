@@ -22,7 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mad_lab.a1_loginpage.R;
-import com.mad_lab.a1_loginpage.Users;
+import com.mad_lab.a1_loginpage.model.Users;
 
 public class SignUpActivity extends AppCompatActivity {
 

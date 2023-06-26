@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mad_lab.a1_loginpage.R;
-import com.mad_lab.a1_loginpage.fragments.dashboard.ProfileFragment;
+import com.mad_lab.a1_loginpage.fragments.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity {
