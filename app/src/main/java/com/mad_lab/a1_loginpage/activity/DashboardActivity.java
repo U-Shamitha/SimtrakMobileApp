@@ -91,7 +91,7 @@ public class DashboardActivity extends AppCompatActivity {
               }
               else if (itemId == R.id.dashboard) {
                   selected_page_tv.setText("Dashboard");
-                  loadFragment(new DashboardHomeFragment());
+                  loadFragment();
               }
               else if (itemId == R.id.add_task) {
                   selected_page_tv.setText("Add Task");
@@ -151,27 +151,17 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else{
 //                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
-                    loadFragment(new DashboardHomeFragment());
+                    loadFragment();
                 }
 
                 if(itemId!=R.id.home && itemId!=R.id.trainees_main){
-                    AsyncTask a = new AsyncTask() {
-                        @Override
-                        protected Object doInBackground(Object[] objects) {
-                            drawerLayout.closeDrawer(GravityCompat.START);
-                            return null;
-                        }
 
-                        @Override
-                        protected void onPostExecute(Object o) {
-                            super.onPostExecute(o);
-                            navigationView.getMenu().clear();
-                            navigationView.inflateMenu(R.menu.dasboard_menu_items);
-                        }
-                    };
-                    a.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
                     isHomeSelected = false;
                     isTraineesSelected = false;
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    navigationView.getMenu().clear();
+                    navigationView.inflateMenu(R.menu.dasboard_menu_items);
+
                 }
 
                 return true;
@@ -186,7 +176,14 @@ public class DashboardActivity extends AppCompatActivity {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else{
-            super.onBackPressed();
+
+            int fragments = getSupportFragmentManager().getBackStackEntryCount();
+            if (fragments == 1) {
+                finish();
+            }else {
+                super.onBackPressed();
+            }
+
         }
 
     }
@@ -196,7 +193,9 @@ public class DashboardActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 //        ft.replace(R.id.dashboardFragment_container, new DashboardHomeFragment());
-        ft.replace(R.id.dashboardFragment_container, new DashboardHomeFragment());
+        ft.add(R.id.dashboardFragment_container, new DashboardHomeFragment());
+        fm.popBackStack("root_fragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        ft.addToBackStack("root_fragment");
         ft.commit();
     }
 
@@ -204,6 +203,7 @@ public class DashboardActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.dashboardFragment_container, fragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 }
