@@ -16,6 +16,32 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <!--    Sign Up *************************************************************************************************************-->
+
+    <!--    Saluation spinner-->
+    <string-array name="salutationSpinnerList">
+        <item>Dr</item>
+        <item>Mr</item>
+        <item>Mrs</item>
+        <item>Miss</item>
+    </string-array>
+
+    <!--    ApplyingFor spinner-->
+    <string-array name="applyingForSpinnerList">
+        <item>Web Development</item>
+        <item>Mobile App Development</item>
+        <item>Social Media Promotion</item>
+        <item>Content Writing/Designing</item>
+        <item>Business Development</item>
+        <item>Marketing</item>
+        <item>Market Research</item>
+        <item>Others</item>
+    </string-array>
+
+
+
+
     <!--    Task Filter AutoCompleteTextView-->
     <string-array name="taskFilters">
         <item>Add Task</item>

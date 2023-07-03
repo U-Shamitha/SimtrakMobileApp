@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -31,7 +32,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.model.Users;
 
 import java.util.ArrayList;
 
@@ -49,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
     public int VOICE_INPUT_REQ_CODE = 200;
 
     FirebaseAuth auth;
+    FirebaseFirestore fstore;
+
+    private String TAG="LoginActivity";
     public static SharedPreferences.Editor editor;
 
     @Override
@@ -60,12 +72,14 @@ public class LoginActivity extends AppCompatActivity {
         password_et = findViewById(R.id.password_et_login1);
         forgotpwd_tv = findViewById(R.id.forgotPwd_tv);
         login_bt = findViewById(R.id.login_bt);
-        auth = FirebaseAuth.getInstance();
         email_tl = findViewById(R.id.email_tl);
         password_tl = findViewById(R.id.password_tl);
         loginLaView = findViewById(R.id.loginLaView);
         signup_tv = findViewById(R.id.signUp_tv);
 //        mic_ib = findViewById(R.id.mic);
+
+        auth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences("login_details", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
@@ -74,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+        getUserDataFromFireStore();
 
         email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -230,6 +245,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    //    voice command extraction start
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -258,7 +275,61 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+//    voice command extraction end
 
+
+    private void getUserDataFromFireStore() {
+
+        String userId = getDataFromSharedPrefernces("userId");
+        if(userId!=""){
+            // Fetch a single document
+//            DocumentSnapshot documentSnapshot = fstore.collection("users").document(userId).get().getResult();
+//            if (documentSnapshot.exists()) {
+//                Log.d(TAG, documentSnapshot.getData()+"");
+//            } else {
+//                Log.d(TAG, "User details not found");
+//            }
+
+            CollectionReference usersRef = fstore.collection("users");
+            usersRef.document(userId).addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                    Log.d(TAG, "documentSnapshotUsersData "+documentSnapshot.getData().toString());
+                    storeDataInSharedPrefernces("salutation", documentSnapshot.getString("salutation"));
+                    storeDataInSharedPrefernces("applyingFor", documentSnapshot.getString("applyingFor"));
+                    storeDataInSharedPrefernces("firstName", documentSnapshot.getString("firstName"));
+                    storeDataInSharedPrefernces("lastName", documentSnapshot.getString("lastName"));
+                    storeDataInSharedPrefernces("email", documentSnapshot.getString("email"));
+                    storeDataInSharedPrefernces("countryCode", documentSnapshot.getString("countryCode"));
+                    storeDataInSharedPrefernces("countryName", documentSnapshot.getString("countryName"));
+                    storeDataInSharedPrefernces("phoneNumber", documentSnapshot.getString("phoneNumber"));
+                    storeDataInSharedPrefernces("city", documentSnapshot.getString("city"));
+                    storeDataInSharedPrefernces("pincode", documentSnapshot.getString("pincode"));
+                }
+            });
+        }
+
+// Fetch multiple documents from a collection
+      /*  Query query = firestore.collection(collectionName).whereEqualTo("field", "value");
+        ApiFuture<QuerySnapshot> querySnapshotFuture = query.get();
+        QuerySnapshot querySnapshot = querySnapshotFuture.get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+        for (QueryDocumentSnapshot doc : documents) {
+            System.out.println("Document data: " + doc.getData());
+        } */
+    }
+
+    public String getDataFromSharedPrefernces(String key) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        return sharedPreferences.getString(key,"");
+    }
+
+    void storeDataInSharedPrefernces(String key, String value) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        SharedPreferences.Editor  editor= sharedPreferences.edit();
+        editor.putString(key,value);
+        editor.apply();
+    }
 
 
 }

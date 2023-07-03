@@ -6,6 +6,9 @@ buildscript {
         google()  // Google's Maven repository
         mavenCentral()  // Maven Central repository
 
+        //country code picker
+        maven { url "https://jitpack.io" }
+
     }
 
     dependencies {

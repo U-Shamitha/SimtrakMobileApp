@@ -56,4 +56,10 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:6.0.1"
 
+    //country code picker
+    implementation "com.hbb20:ccp:2.6.0"
+//    implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+
+    //firestore database
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
 }
