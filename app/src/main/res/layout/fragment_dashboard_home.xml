@@ -158,18 +158,27 @@
                     </RelativeLayout>
 
                     <LinearLayout
+                        android:id="@+id/search_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+
+                        android:background="@drawable/round_border">
+
+                        <ImageView
+                            android:id="@+id/search_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_search_24"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"/>
 
                         <androidx.appcompat.widget.SearchView
                             android:id="@+id/search_task"
                             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/round_border"
-                            android:foregroundTint="@color/my_primary_color"
                             app:iconifiedByDefault="false"
+                            app:searchIcon="@null"
                             app:queryHint="Search your tasks" />
 
                     </LinearLayout>

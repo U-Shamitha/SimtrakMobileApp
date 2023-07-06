@@ -41,7 +41,10 @@ import com.mad_lab.a1_loginpage.inventory.PriorityData;
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 import com.nex3z.togglebuttongroup.button.LabelToggle;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -207,10 +210,13 @@ public class DashboardAddTaskFragment extends Fragment {
                 else{
 
                     DocumentReference documentReference = fstore.collection("users").document(userId);
+                    String dateFormat = "dd-MM-yyyy";
+                    SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
                     Map<String, Object> task = new HashMap<>();
                     task.put("taskName", taskName);
                     task.put("taskPriority", selectedItemIndex);
                     task.put("taskType", taskType);
+                    task.put("assignedDate", sdf.format(new Date()));
                     Log.d(TAG, task.toString());
                     documentReference.update("tasks", FieldValue.arrayUnion(task))
                             .addOnSuccessListener(new OnSuccessListener<Void>() {

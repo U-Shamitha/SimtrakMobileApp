@@ -130,7 +130,7 @@
                     <TextView
                         android:layout_width="75pt"
                         android:layout_height="wrap_content"
-                        android:text="Assigned By"
+                        android:text="Task Type"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
 

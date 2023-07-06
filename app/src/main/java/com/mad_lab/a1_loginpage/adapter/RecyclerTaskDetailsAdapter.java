@@ -41,7 +41,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
         holder.assignedDate_tv.setText(arrTaskDetails.get(position).assignedDate);
         holder.name_tv.setText(arrTaskDetails.get(position).name);
         holder.deadline_tv.setText(arrTaskDetails.get(position).deadline);
-        holder.assignedDate_tv.setText(arrTaskDetails.get(position).assignedDate);
+        holder.assignedBy_tv.setText(arrTaskDetails.get(position).assignedBy);
     }
 
 

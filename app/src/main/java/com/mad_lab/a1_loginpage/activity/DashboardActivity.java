@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,9 @@ public class DashboardActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+
+
     Boolean isTraineesSelected= false;
     Boolean isHomeSelected= false;
 
@@ -48,16 +52,23 @@ public class DashboardActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         selected_page_tv = findViewById(R.id.selected_page_tv);
 
-//        navigationView.inflateMenu(R.menu.dasboard_menu_items);
+
+
+        // toolbar start
 
         setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
-
         drawerLayout.addDrawerListener(toggle);
-
         toggle.syncState();
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.userName_nav_tv);
+        navUsername.setText(getDataFromSharedPrefernces("firstName")+" "+getDataFromSharedPrefernces("lastName"));
+
+        // toolbar end
+
+
 
         loadFragment();
 
@@ -186,6 +197,11 @@ public class DashboardActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public String getDataFromSharedPrefernces(String key) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        return sharedPreferences.getString(key,"");
     }
 
     public void loadFragment(){
