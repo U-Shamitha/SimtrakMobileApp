@@ -7,17 +7,23 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +37,14 @@ import com.mad_lab.a1_loginpage.adapter.RecyclerTaskDetailsAdapter;
 import com.mad_lab.a1_loginpage.model.TaskDetailsModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 public class DashboardHomeFragment extends Fragment {
 
     TextView userName_tv;
+    ImageButton sort_ib;
     LinearLayout search_ll;
     SearchView searchTask;
     ImageView search_iv;
@@ -44,6 +53,7 @@ public class DashboardHomeFragment extends Fragment {
     ArrayList<TaskDetailsModel> homeTasksArrayList;
 
     String TAG = "HomeFragment";
+    boolean desSort = false;
 
     FirebaseFirestore fstore;
 
@@ -59,6 +69,7 @@ public class DashboardHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard_home, container, false);
 
         userName_tv = view.findViewById(R.id.userName_tv);
+        sort_ib = view.findViewById(R.id.sort_ib);
         search_ll = view.findViewById(R.id.search_ll);
         searchTask = view.findViewById(R.id.search_task);
         search_iv = view.findViewById(R.id.search_iv);
@@ -66,6 +77,20 @@ public class DashboardHomeFragment extends Fragment {
         homeTasksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         homeTasksArrayList = new ArrayList<>();
         fstore = FirebaseFirestore.getInstance();
+
+
+
+        //Task sort start
+        sort_ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenuForSortTask(view);
+            }
+        });
+
+        //Task sort end
+
+
 
         //Search bar
         searchTask.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -232,4 +257,119 @@ public class DashboardHomeFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
         return sharedPreferences.getString(key,"");
     }
+
+    private void showPopupMenuForSortTask(View v) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+        popupMenu.inflate(R.menu.task_sort_menu);
+
+        MenuItem checkboxItem = popupMenu.getMenu().findItem(R.id.revSort_cb);
+
+        checkboxItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                checkboxItem.setChecked(!checkboxItem.isChecked());
+                desSort = !desSort;
+
+                // Keep the popup menu open
+                checkboxItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                checkboxItem.setActionView(new View(getContext()));
+                MenuItemCompat.setOnActionExpandListener(checkboxItem, new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        return false;
+                    }
+                });
+
+                return false;
+            }
+
+        });
+
+
+//        if (checkboxItem != null) {
+//            CheckBox checkBox = (CheckBox) checkboxItem.getActionView().findViewById(R.id.menu_item_checkbox);
+//            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                    checkBox.setChecked(!checkBox.isChecked());
+//                    desSort = !desSort;
+//                }
+//            });
+
+
+//        }
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case R.id.taskId_sort:
+                        Toast.makeText(getContext(), "taskId sort", Toast.LENGTH_SHORT).show();
+                        Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
+                            @Override
+                            public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
+                                return task1.name.compareTo(task2.name);
+                            }
+                        });
+                        if(desSort){
+                            Collections.reverse(homeTasksArrayList);
+                        }
+                        homeTasksArrAdapter.notifyDataSetChanged();
+                        return true;
+                    case R.id.assignedDate_sort:
+                        Toast.makeText(getContext(), "assigned date sort", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "deadline sort", Toast.LENGTH_SHORT).show();
+                        Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
+                            @Override
+                            public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
+                                return task1.assignedDate.compareTo(task2.assignedDate);
+                            }
+                        });
+                        if(desSort){
+                            Collections.reverse(homeTasksArrayList);
+                        }
+                        homeTasksArrAdapter.notifyDataSetChanged();
+                        return true;
+                    case R.id.deadline_sort:
+                        Toast.makeText(getContext(), "deadline sort", Toast.LENGTH_SHORT).show();
+                        Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
+                            @Override
+                            public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
+                                return task1.deadline.compareTo(task2.deadline);
+                            }
+                        });
+                        if(desSort){
+                            Collections.reverse(homeTasksArrayList);
+                        }
+                        homeTasksArrAdapter.notifyDataSetChanged();
+                        return true;
+                    case R.id.taskType_sort:
+                        Toast.makeText(getContext(), "task type sort", Toast.LENGTH_SHORT).show();
+                        Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
+                            @Override
+                            public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
+                                return task1.assignedBy.compareTo(task2.assignedBy);
+                            }
+                        });
+                        if(desSort){
+                            Collections.reverse(homeTasksArrayList);
+                        }
+                        homeTasksArrAdapter.notifyDataSetChanged();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
+        popupMenu.show();
+    }
+
 }

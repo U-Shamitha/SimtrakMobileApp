@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+
+    <item
+        android:id="@+id/taskId_sort"
+        android:title="Task ID"/>
+    <item
+        android:id="@+id/assignedDate_sort"
+        android:title="Assigned Date" />
+    <item
+        android:id="@+id/deadline_sort"
+        android:title="Deadline" />
+    <item
+        android:id="@+id/taskType_sort"
+        android:title="Task Type" />
+</menu>

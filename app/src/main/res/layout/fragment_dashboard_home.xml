@@ -137,6 +137,7 @@
                             android:textStyle="bold" />
 
                         <ImageButton
+                            android:id="@+id/sort_ib"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
