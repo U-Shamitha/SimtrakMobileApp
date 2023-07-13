@@ -259,10 +259,10 @@ public class DashboardHomeFragment extends Fragment {
     }
 
     private void showPopupMenuForSortTask(View v) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), v);
-        popupMenu.inflate(R.menu.task_sort_menu);
+        PopupMenu sortTaskPopupMenu = new PopupMenu(getContext(), v);
+        sortTaskPopupMenu.inflate(R.menu.task_sort_menu);
 
-        MenuItem checkboxItem = popupMenu.getMenu().findItem(R.id.revSort_cb);
+        MenuItem checkboxItem = sortTaskPopupMenu.getMenu().findItem(R.id.revSort_cb);
 
         checkboxItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -304,7 +304,7 @@ public class DashboardHomeFragment extends Fragment {
 
 //        }
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        sortTaskPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
@@ -320,6 +320,7 @@ public class DashboardHomeFragment extends Fragment {
                         });
                         if(desSort){
                             Collections.reverse(homeTasksArrayList);
+                            desSort=false;
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
@@ -334,6 +335,7 @@ public class DashboardHomeFragment extends Fragment {
                         });
                         if(desSort){
                             Collections.reverse(homeTasksArrayList);
+                            desSort=false;
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
@@ -347,6 +349,7 @@ public class DashboardHomeFragment extends Fragment {
                         });
                         if(desSort){
                             Collections.reverse(homeTasksArrayList);
+                            desSort=false;
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
@@ -360,6 +363,7 @@ public class DashboardHomeFragment extends Fragment {
                         });
                         if(desSort){
                             Collections.reverse(homeTasksArrayList);
+                            desSort=false;
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
@@ -369,7 +373,7 @@ public class DashboardHomeFragment extends Fragment {
             }
         });
 
-        popupMenu.show();
+        sortTaskPopupMenu.show();
     }
 
 }

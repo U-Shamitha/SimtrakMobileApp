@@ -40,8 +40,6 @@
     </string-array>
 
 
-
-
     <!--    Task Filter AutoCompleteTextView-->
     <string-array name="taskFilters">
         <item>Add Task</item>
@@ -73,7 +71,6 @@
         <item>Medium urgency (within 3-7 days)</item>
         <item>Not urgent (over 7 days)</item>
     </string-array>
-
 
 
     <!--    Add Journal *************************************************************************************************************-->

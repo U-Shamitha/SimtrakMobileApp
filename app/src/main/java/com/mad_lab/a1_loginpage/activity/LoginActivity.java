@@ -221,6 +221,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("userEmail",email);
                                     editor.apply();
                                     SignUpActivity.loggedInUserEmail= email;
+                                    getUserDataFromFireStore();
                                     startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 //                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
                                     finish();
@@ -280,7 +281,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getUserDataFromFireStore() {
 
-        String userId = getDataFromSharedPrefernces("userId");
+//        String userId = getDataFromSharedPrefernces("userId");
+        String userId = auth.getCurrentUser().getUid();
         if(userId!=""){
             // Fetch a single document
 //            DocumentSnapshot documentSnapshot = fstore.collection("users").document(userId).get().getResult();

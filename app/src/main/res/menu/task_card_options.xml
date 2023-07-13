@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/taskNotes"
+        android:title="Task Notes"/>
+    <item
+        android:id="@+id/taskLinks"
+        android:title="Task Links" />
+    <item
+        android:id="@+id/taskStatus"
+        android:title="Task Status" />
+    <item
+        android:id="@+id/editTask"
+        android:title="Edit Task" />
+</menu>
