@@ -157,6 +157,7 @@ public class DashboardActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("login_details", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLogin",false);
+                    editor.putString("userId","");
                     editor.apply();
                     startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
                 }

@@ -164,10 +164,12 @@ public class DashboardHomeFragment extends Fragment {
 
                     String[] deadlines = {"0-2 days", "3-7 days", "over 7 days"};
 
-                    for (Map<String, Object> task : tasks) {
+                    if(tasks!=null){
+                        for (Map<String, Object> task : tasks) {
 
-                        homeTasksArrayList.add(new TaskDetailsModel("id", task.get("assignedDate")+"", task.get("taskName")+"", deadlines[(int)(long) task.get("taskPriority")-1], task.get("taskType")+""));
-                        Log.d(TAG, task.toString());
+                            homeTasksArrayList.add(new TaskDetailsModel("id", task.get("assignedDate")+"", task.get("taskName")+"", deadlines[(int)(long) task.get("taskPriority")-1], task.get("taskType")+""));
+                            Log.d(TAG, task.toString());
+                        }
                     }
 
                     homeTasksArrAdapter = new RecyclerTaskDetailsAdapter(getContext(), homeTasksArrayList);

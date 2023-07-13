@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        getUserDataFromFireStore();
+        getUserDataFromFireStore(sharedPref.getString("userId",""));
 
         email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -221,10 +221,11 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("userEmail",email);
                                     editor.apply();
                                     SignUpActivity.loggedInUserEmail= email;
-                                    getUserDataFromFireStore();
-                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-//                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
-                                    finish();
+                                    storeDataInSharedPrefernces("userId", auth.getCurrentUser().getUid());
+                                    getUserDataFromFireStore(auth.getCurrentUser().getUid());
+//                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+////                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
+//                                    finish();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -279,10 +280,11 @@ public class LoginActivity extends AppCompatActivity {
 //    voice command extraction end
 
 
-    private void getUserDataFromFireStore() {
+    private void getUserDataFromFireStore(String userId) {
 
 //        String userId = getDataFromSharedPrefernces("userId");
-        String userId = auth.getCurrentUser().getUid();
+//        String userId = auth.getCurrentUser().getUid();
+        Toast.makeText(getApplicationContext(), "userId: "+userId, Toast.LENGTH_SHORT).show();
         if(userId!=""){
             // Fetch a single document
 //            DocumentSnapshot documentSnapshot = fstore.collection("users").document(userId).get().getResult();
@@ -307,6 +309,9 @@ public class LoginActivity extends AppCompatActivity {
                     storeDataInSharedPrefernces("phoneNumber", documentSnapshot.getString("phoneNumber"));
                     storeDataInSharedPrefernces("city", documentSnapshot.getString("city"));
                     storeDataInSharedPrefernces("pincode", documentSnapshot.getString("pincode"));
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+//                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
+                    finish();
                 }
             });
         }
