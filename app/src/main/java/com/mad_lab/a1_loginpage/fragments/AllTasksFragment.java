@@ -49,11 +49,11 @@ public class AllTasksFragment extends Fragment {
 
         getTasksDataFromFireStore();
 
-        arrTaskDetails.add(new TaskDetailsModel("id1","26-05-23","task1","27-05-23","self"));
-        arrTaskDetails.add(new TaskDetailsModel("id2","27-05-23","task2","28-05-23","self"));
-        arrTaskDetails.add(new TaskDetailsModel("id3","28-05-23","task3","29-05-23","self"));
-        arrTaskDetails.add(new TaskDetailsModel("id4","29-05-23","task4","30-05-23","self"));
-        arrTaskDetails.add(new TaskDetailsModel("id5","30-05-23","task5","31-05-23","self"));
+        arrTaskDetails.add(new TaskDetailsModel("id1","Task1","26-05-23","task1","27-05-23","self"));
+        arrTaskDetails.add(new TaskDetailsModel("id2","Task2","27-05-23","task2","28-05-23","self"));
+        arrTaskDetails.add(new TaskDetailsModel("id3","Task3","28-05-23","task3","29-05-23","self"));
+        arrTaskDetails.add(new TaskDetailsModel("id4","Task4","29-05-23","task4","30-05-23","self"));
+        arrTaskDetails.add(new TaskDetailsModel("id5","Task5","30-05-23","task5","31-05-23","self"));
 
         RecyclerTaskDetailsAdapter adapter = new RecyclerTaskDetailsAdapter(getContext(), arrTaskDetails);
         recyclerView.setAdapter(adapter);

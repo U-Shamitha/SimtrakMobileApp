@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        getUserDataFromFireStore(sharedPref.getString("userId",""));
+        getUserDataFromFireStore(getDataFromSharedPrefernces("userId"));
 
         email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -258,6 +258,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "voice command: "+voice, Toast.LENGTH_SHORT).show();
             if (voice.contains("signup") || voice.contains("sign up")) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                finish();
             }
         }else{
             Toast.makeText(this, "Invalid request code", Toast.LENGTH_SHORT).show();
@@ -312,6 +313,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 //                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
                     finish();
+                    finishAffinity();
                 }
             });
         }

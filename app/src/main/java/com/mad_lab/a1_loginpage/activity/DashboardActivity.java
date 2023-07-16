@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardHomeFragment;
+import com.mad_lab.a1_loginpage.fragments.home.EditTaskFragment;
 import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.JournalFragment;
@@ -69,8 +70,25 @@ public class DashboardActivity extends AppCompatActivity {
         // toolbar end
 
 
+        //Loading Fragemnt
 
-        loadFragment();
+        // Get the Intent that started this activity
+        Intent intent = getIntent();
+
+        // Retrieve the extras from the intent
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+            // Extract the value associated with the specific key
+            String fragmentType = extras.getString("DesFragment");
+
+            // Load the corresponding fragment based on the extracted value
+            if ("EditTask".equals(fragmentType)) {
+                loadFragment(new EditTaskFragment());
+            }
+        }else{
+            loadFragment();
+        }
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -163,7 +181,7 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else{
 //                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
-                    loadFragment();
+//                    loadFragment();
                 }
 
                 if(itemId!=R.id.home && itemId!=R.id.trainees_main){

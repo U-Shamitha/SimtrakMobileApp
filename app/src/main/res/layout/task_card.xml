@@ -104,8 +104,29 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="75pt"
+                        android:layout_height="wrap_content"
+                        android:text="Task Priority"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/taskPriority_tv"
+                        android:layout_width="75pt"
+                        android:layout_height="wrap_content"
+                        android:text="task priority"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+                <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="75pt"
@@ -131,6 +152,26 @@
                         android:layout_width="75pt"
                         android:layout_height="wrap_content"
                         android:text="Task Type"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/taskType_tv"
+                        android:layout_width="75pt"
+                        android:layout_height="wrap_content"
+                        android:text="task type"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="75pt"
+                        android:layout_height="wrap_content"
+                        android:text="Assigned By"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
 

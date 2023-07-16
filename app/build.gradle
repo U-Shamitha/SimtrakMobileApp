@@ -62,4 +62,8 @@ dependencies {
 
     //firestore database
     implementation 'com.google.firebase:firebase-firestore:24.6.1'
+
+    //mapdata json
+    implementation 'com.google.code.gson:gson:2.8.8'
+
 }
