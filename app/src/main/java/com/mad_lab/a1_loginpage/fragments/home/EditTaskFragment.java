@@ -27,6 +27,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,6 +38,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.firestore.WriteBatch;
+import com.google.firestore.v1.WriteResult;
 import com.google.gson.Gson;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.activity.DashboardActivity;
@@ -50,7 +54,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class EditTaskFragment extends Fragment {
 
@@ -80,6 +86,7 @@ public class EditTaskFragment extends Fragment {
     FirebaseFirestore fstore;
 
     String TAG = "EditTaskFragment";
+    String taskId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -167,6 +174,8 @@ public class EditTaskFragment extends Fragment {
                 Integer selectedItemIndex = Integer.parseInt(taskPriority_spinner.getSelectedItem().toString());
                 String taskPriority = PriorityData.getPriorityList().get(selectedItemIndex).getName();
                 String taskType = selectedTaskType;
+                String deadline = deadline_et.getText().toString().trim();
+                String description = taskDes_et.getText().toString().trim();
                 String userId = getUserIdFromSharedPrefernces("userId");
 
                 if(TextUtils.isEmpty(taskName)){
@@ -188,32 +197,58 @@ public class EditTaskFragment extends Fragment {
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     if(documentSnapshot.exists()){
                                         ArrayList<Map<String, Object>> tasks= (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks")!=null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks") : new ArrayList<>();
-                                        Integer taskId = tasks.size();
                                         String dateFormat = "dd-MM-yyyy";
                                         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-                                        Map<String, Object> task = new HashMap<>();
-                                        task.put("taskId", taskId);
-                                        task.put("taskName", taskName);
-                                        task.put("taskPriority", selectedItemIndex);
-                                        task.put("taskType", taskType);
-                                        task.put("assignedDate", sdf.format(new Date()));
-                                        task.put("assignedBy", "self");
-                                        Log.d(TAG, task.toString());
-                                        documentReference.update("tasks", FieldValue.arrayUnion(task))
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Log.d(TAG, "task data uploaded to firestore");
-                                                        startActivity(new Intent(getActivity(), DashboardActivity.class));
-                                                        getActivity().finish();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.d(TAG, "task data upload failed"+e.getMessage());
-                                                    }
-                                                });
+
+                                        if (tasks != null) {
+                                            for (Map<String, Object> task : tasks) {
+                                                Log.d("all tasks", task.toString());
+                                                if (taskId.equals(task.get("taskId"))) {
+//                                                    task.put("taskId", taskId);
+                                                    task.put("taskName", taskName);
+                                                    task.put("taskPriority", selectedItemIndex);
+                                                    task.put("taskType", taskType);
+                                                    task.put("deadline", deadline);
+                                                    task.put("description", description);
+
+//                                                        task.put("assignedDate", sdf.format(new Date()));
+//                                                    task.put("assignedBy", "self");
+                                                    Log.d(TAG, task.toString());
+
+                                                    // Save the updated data back to the document
+                                                    documentReference.update("tasks",tasks)
+                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(getContext(), "Task Updated Successfully", Toast.LENGTH_LONG).show();
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Toast.makeText(getContext(), "Update Failed: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                                                            }
+                                                        });
+
+
+                                                    break; // Assuming there is only one matching item
+                                                }
+                                            }
+                                        }
+//                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                    @Override
+//                                                    public void onSuccess(Void unused) {
+//                                                        Log.d(TAG, "task data uploaded to firestore");
+//                                                        startActivity(new Intent(getActivity(), DashboardActivity.class));
+//                                                        getActivity().finish();
+//                                                    }
+//                                                })
+//                                                .addOnFailureListener(new OnFailureListener() {
+//                                                    @Override
+//                                                    public void onFailure(@NonNull Exception e) {
+//                                                        Log.d(TAG, "task data upload failed"+e.getMessage());
+//                                                    }
+//                                                });
                                     }
                                 }
                             })
@@ -288,15 +323,18 @@ public class EditTaskFragment extends Fragment {
         if(jsonString!= null) {
             Map<String, Object> mapData = new Gson().fromJson(jsonString, new TypeToken<Map<String, Object>>() {
             }.getType());
-            Log.d("DataRetInEditTask",mapData.toString());
+
             taskName_et.setText(mapData.get("TaskName") + "");
             assignedDate_et.setText(mapData.get("AssignedDate") + "");
+            taskId = mapData.get("TaskId").toString();
+
             //set task type
             if(mapData.get("TaskType").equals("continuous")){
                 continuous_label.performClick();
             } else if (mapData.get("TaskType").equals("recurring")) {
                 recurring_label.performClick();
             }
+
             //set spinner
             Log.d("TaskPriority",mapData.get("TaskPriority").toString());
             String[] priorities = {"0-2 days", "3-7 days", "over 7 days"};

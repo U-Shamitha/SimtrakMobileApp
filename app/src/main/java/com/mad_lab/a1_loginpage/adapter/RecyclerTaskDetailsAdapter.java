@@ -101,6 +101,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                                     return true;
                                 case R.id.editTask:
                                     Map<String, Object> mapData = new HashMap<>();
+                                    mapData.put("TaskId", id_tv.getText());
                                     mapData.put("TaskName", name_tv.getText());
                                     mapData.put("AssignedDate", assignedDate_tv.getText());
                                     mapData.put("TaskPriority", taskPriority_tv.getText());
