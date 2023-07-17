@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mad_lab.a1_loginpage.R;
@@ -43,6 +44,7 @@ import com.nex3z.togglebuttongroup.button.LabelToggle;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -210,29 +212,51 @@ public class DashboardAddTaskFragment extends Fragment {
                 else{
 
                     DocumentReference documentReference = fstore.collection("users").document(userId);
-                    String dateFormat = "dd-MM-yyyy";
-                    SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-                    Map<String, Object> task = new HashMap<>();
-                    task.put("taskName", taskName);
-                    task.put("taskPriority", selectedItemIndex);
-                    task.put("taskType", taskType);
-                    task.put("assignedDate", sdf.format(new Date()));
-                    Log.d(TAG, task.toString());
-                    documentReference.update("tasks", FieldValue.arrayUnion(task))
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d(TAG, "task data uploaded to firestore");
-                                    startActivity(new Intent(getActivity(), DashboardActivity.class));
-                                    getActivity().finish();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "task data upload failed"+e.getMessage());
-                                }
-                            });
+                    documentReference.get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if(documentSnapshot.exists()){
+                                ArrayList<Map<String, Object>> tasks= (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks")!=null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks") : new ArrayList<>();
+//                                Integer taskId = tasks.size();
+                                String dateFormat = "dd-MM-yyyy";
+                                String dateTimeFormat = "dd-MM-yyyy hh:mm:ss";
+                                SimpleDateFormat sdtf = new SimpleDateFormat(dateTimeFormat);
+                                SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+                                String taskId = sdtf.format(new Date());
+                                Map<String, Object> task = new HashMap<>();
+                                task.put("taskId", taskId);
+                                task.put("taskName", taskName);
+                                task.put("taskPriority", selectedItemIndex);
+                                task.put("taskType", taskType);
+                                task.put("assignedDate", sdf.format(new Date()));
+                                task.put("assignedBy", "self");
+                                Log.d(TAG, task.toString());
+                                documentReference.update("tasks", FieldValue.arrayUnion(task))
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.d(TAG, "task data uploaded to firestore");
+                                                startActivity(new Intent(getActivity(), DashboardActivity.class));
+                                                getActivity().finish();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.d(TAG, "task data upload failed"+e.getMessage());
+                                            }
+                                        });
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "user doc not found"+e.getMessage());
+                        }
+                    });
+                    ;
 
 
 

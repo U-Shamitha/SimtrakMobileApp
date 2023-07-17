@@ -75,13 +75,19 @@
                         android:textSize="15sp"
                         android:textStyle="bold"/>
 
-                    <TextView
-                        android:id="@+id/id_tv"
-                        android:layout_width="75pt"
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="id"
-                        android:textSize="15sp"
-                        android:textStyle="italic" />
+                        android:scrollbarThumbHorizontal="@android:color/transparent">
+                        <TextView
+                            android:id="@+id/id_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="id"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+                    </HorizontalScrollView>
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -166,7 +166,7 @@ public class DashboardHomeFragment extends Fragment {
 
                     if(tasks!=null){
                         for (Map<String, Object> task : tasks) {
-                            homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+""));
+                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskName")+"", task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+""));
                             Log.d(TAG, task.toString());
                         }
                     }
@@ -312,8 +312,8 @@ public class DashboardHomeFragment extends Fragment {
 
                 switch (item.getItemId()) {
 
-                    case R.id.taskId_sort:
-                        Toast.makeText(getContext(), "taskId sort", Toast.LENGTH_SHORT).show();
+                    case R.id.taskName_sort:
+                        Toast.makeText(getContext(), "taskName sort", Toast.LENGTH_SHORT).show();
                         Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
                             @Override
                             public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
@@ -328,7 +328,6 @@ public class DashboardHomeFragment extends Fragment {
                         return true;
                     case R.id.assignedDate_sort:
                         Toast.makeText(getContext(), "assigned date sort", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), "deadline sort", Toast.LENGTH_SHORT).show();
                         Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
                             @Override
                             public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
@@ -341,12 +340,12 @@ public class DashboardHomeFragment extends Fragment {
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
-                    case R.id.deadline_sort:
-                        Toast.makeText(getContext(), "deadline sort", Toast.LENGTH_SHORT).show();
+                    case R.id.priority_sort:
+                        Toast.makeText(getContext(), "priority sort", Toast.LENGTH_SHORT).show();
                         Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
                             @Override
                             public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
-                                return task1.deadline.compareTo(task2.deadline);
+                                return task1.priority.compareTo(task2.priority);
                             }
                         });
                         if(desSort){
@@ -360,7 +359,7 @@ public class DashboardHomeFragment extends Fragment {
                         Collections.sort(homeTasksArrayList, new Comparator<TaskDetailsModel>() {
                             @Override
                             public int compare(TaskDetailsModel task1, TaskDetailsModel task2) {
-                                return task1.assignedBy.compareTo(task2.assignedBy);
+                                return task1.type.compareTo(task2.type);
                             }
                         });
                         if(desSort){

@@ -89,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(getApplicationContext().getSharedPreferences("login_details", Context.MODE_PRIVATE).getBoolean("isLogin", false)){
             loggedInUserEmail = getApplicationContext().getSharedPreferences("login_details", Context.MODE_PRIVATE).getString("userEmail","");
             if(!loggedInUserEmail.equals("")) {
-                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
             }
         }
 

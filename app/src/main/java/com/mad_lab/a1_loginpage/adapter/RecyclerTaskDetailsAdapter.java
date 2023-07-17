@@ -54,7 +54,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.id_tv.setText(arrTaskDetails.get(position).name);
+        holder.id_tv.setText(arrTaskDetails.get(position).id);
         holder.assignedDate_tv.setText(arrTaskDetails.get(position).assignedDate);
         holder.name_tv.setText(arrTaskDetails.get(position).name);
         holder.taskPriority_tv.setText(arrTaskDetails.get(position).priority);

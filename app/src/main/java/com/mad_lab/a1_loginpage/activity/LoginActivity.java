@@ -84,11 +84,10 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences("login_details", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         if(sharedPref.getBoolean("isLogin",false)){
+            getUserDataFromFireStore(getDataFromSharedPrefernces("userId"));
             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             finish();
         }
-
-        getUserDataFromFireStore(getDataFromSharedPrefernces("userId"));
 
         email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -223,9 +222,9 @@ public class LoginActivity extends AppCompatActivity {
                                     SignUpActivity.loggedInUserEmail= email;
                                     storeDataInSharedPrefernces("userId", auth.getCurrentUser().getUid());
                                     getUserDataFromFireStore(auth.getCurrentUser().getUid());
-//                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-////                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
-//                                    finish();
+                                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+//                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
+                                    finish();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -310,10 +309,10 @@ public class LoginActivity extends AppCompatActivity {
                     storeDataInSharedPrefernces("phoneNumber", documentSnapshot.getString("phoneNumber"));
                     storeDataInSharedPrefernces("city", documentSnapshot.getString("city"));
                     storeDataInSharedPrefernces("pincode", documentSnapshot.getString("pincode"));
-                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-//                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
-                    finish();
-                    finishAffinity();
+//                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+////                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
+//                    finish();
+//                    finishAffinity();
                 }
             });
         }

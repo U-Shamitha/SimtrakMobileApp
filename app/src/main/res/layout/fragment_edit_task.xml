@@ -78,7 +78,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/taskAssignedDate_tl"
+                            android:id="@+id/assignedDate_tl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:startIconDrawable="@drawable/baseline_date_range_24"
@@ -94,8 +94,9 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
                                 android:hint="Assigned Date"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dark_grey"
                                 android:layout_marginBottom="5dp"
+                                android:enabled="false"
                                 />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -229,7 +230,7 @@
                             />
 
                         <Button
-                            android:id="@+id/addTask_btn"
+                            android:id="@+id/editTask_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="SUBMIT"

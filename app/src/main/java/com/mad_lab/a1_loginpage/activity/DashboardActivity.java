@@ -87,7 +87,10 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new EditTaskFragment());
             }
         }else{
-            loadFragment();
+            int fragments = getSupportFragmentManager().getBackStackEntryCount();
+            if (fragments == 0) {
+                loadFragment();
+            }
         }
 
 
@@ -178,6 +181,7 @@ public class DashboardActivity extends AppCompatActivity {
                     editor.putString("userId","");
                     editor.apply();
                     startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+                    finish();
                 }
                 else{
 //                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();

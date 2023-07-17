@@ -7,14 +7,14 @@
         android:checkable="true" />
 
     <item
-        android:id="@+id/taskId_sort"
-        android:title="Task ID"/>
+        android:id="@+id/taskName_sort"
+        android:title="Task Name"/>
     <item
         android:id="@+id/assignedDate_sort"
         android:title="Assigned Date" />
     <item
-        android:id="@+id/deadline_sort"
-        android:title="Deadline" />
+        android:id="@+id/priority_sort"
+        android:title="Priority" />
     <item
         android:id="@+id/taskType_sort"
         android:title="Task Type" />
