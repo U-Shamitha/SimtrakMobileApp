@@ -87,10 +87,7 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new EditTaskFragment());
             }
         }else{
-            int fragments = getSupportFragmentManager().getBackStackEntryCount();
-            if (fragments == 0) {
-                loadFragment();
-            }
+            loadFragment();
         }
 
 
@@ -183,7 +180,7 @@ public class DashboardActivity extends AppCompatActivity {
                     startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
                     finish();
                 }
-                else{
+                else {
 //                    Toast.makeText(DashboardActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
 //                    loadFragment();
                 }

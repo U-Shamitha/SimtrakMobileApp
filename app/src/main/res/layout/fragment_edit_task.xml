@@ -140,7 +140,7 @@
                                 android:id="@+id/taskDes_et"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"
+                                android:inputType="textMultiLine"
                                 android:hint="Task Description"
                                 android:textColor="@color/black"
                                 android:layout_marginBottom="5dp"

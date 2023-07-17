@@ -9,9 +9,13 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.play.core.integrity.p;
 import com.google.gson.Gson;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.activity.DashboardActivity;
@@ -57,9 +62,25 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
         holder.id_tv.setText(arrTaskDetails.get(position).id);
         holder.assignedDate_tv.setText(arrTaskDetails.get(position).assignedDate);
         holder.name_tv.setText(arrTaskDetails.get(position).name);
+        holder.deadline_tv.setText(arrTaskDetails.get(position).deadline);
         holder.taskPriority_tv.setText(arrTaskDetails.get(position).priority);
         holder.taskType_tv.setText(arrTaskDetails.get(position).type);
         holder.assignedBy_tv.setText(arrTaskDetails.get(position).assignedBy);
+        holder.description_tv.setText(arrTaskDetails.get(position).description);
+
+        if(!arrTaskDetails.get(position).deadline.equals("") && !arrTaskDetails.get(position).deadline.equals("null")){
+            holder.deadline_ll.setVisibility(View.VISIBLE);
+        }else{
+            holder.deadline_ll.setVisibility(View.GONE);
+        }
+
+        if(!arrTaskDetails.get(position).description.equals("") && !arrTaskDetails.get(position).description.equals("null")){
+            holder.description_ll.setVisibility(View.VISIBLE);
+        }else{
+            holder.description_ll.setVisibility(View.GONE);
+        }
+
+
     }
 
 
@@ -70,7 +91,10 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id_tv, name_tv, assignedDate_tv, deadline_tv, assignedBy_tv, taskCardMenu_btn, taskType_tv, taskPriority_tv;
+        TextView id_tv, name_tv, assignedDate_tv, deadline_tv, assignedBy_tv, taskCardMenu_btn, taskType_tv, taskPriority_tv, description_tv;
+        LinearLayout deadline_ll, description_ll;
+
+        boolean desExpanded = false;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +106,11 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
             taskType_tv = itemView.findViewById(R.id.taskType_tv);
             assignedBy_tv = itemView.findViewById(R.id.assignedBy_tv);
             taskCardMenu_btn = itemView.findViewById(R.id.menu);
+            description_tv = itemView.findViewById(R.id.description_tv);
+
+            deadline_ll = itemView.findViewById(R.id.deadline_ll);
+            description_ll = itemView.findViewById(R.id.description_ll);
+
 
             taskCardMenu_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,9 +133,11 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                                     mapData.put("TaskId", id_tv.getText());
                                     mapData.put("TaskName", name_tv.getText());
                                     mapData.put("AssignedDate", assignedDate_tv.getText());
+                                    mapData.put("Deadline", deadline_tv.getText());
                                     mapData.put("TaskPriority", taskPriority_tv.getText());
                                     mapData.put("TaskType", taskType_tv.getText());
                                     mapData.put("AssignedBy", assignedBy_tv.getText());
+                                    mapData.put("Description", description_tv.getText());
                                     storeDataInSharedPrefernces("selectedTaskDetails", mapData);
                                     Log.d("EditTaskData", mapData.toString());
                                     Intent intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
@@ -122,6 +153,26 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                     taskCardOptionsPopupMenu.show();
                 }
             });
+
+            description_ll.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    desExpanded = !desExpanded;
+                    if(desExpanded){
+                        Toast.makeText(context, "expanding", Toast.LENGTH_LONG).show();
+                        ViewGroup.LayoutParams params = description_ll.getLayoutParams();
+                        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                        description_ll.setLayoutParams(params);
+                    }else{
+                        Toast.makeText(context, "collapsing", Toast.LENGTH_LONG).show();
+                        ViewGroup.LayoutParams params = description_ll.getLayoutParams();
+                        params.height = 210;
+                        description_ll.setLayoutParams(params);
+                    }
+                    return false;
+                }
+            });
+
         }
     }
 

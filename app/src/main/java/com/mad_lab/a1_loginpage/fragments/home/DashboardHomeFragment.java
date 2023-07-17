@@ -166,7 +166,7 @@ public class DashboardHomeFragment extends Fragment {
 
                     if(tasks!=null){
                         for (Map<String, Object> task : tasks) {
-                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskName")+"", task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+""));
+                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
                             Log.d(TAG, task.toString());
                         }
                     }
@@ -222,13 +222,13 @@ public class DashboardHomeFragment extends Fragment {
 
                     if(searchTask_txt.isEmpty() || searchTask_txt.equalsIgnoreCase("all")){
                         for (Map<String, Object> task : tasks) {
-                            homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+""));
+                            homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
                             Log.d(TAG, task.toString());
                         }
                     }else {
                         for (Map<String, Object> task : tasks) {
                             if ((task.get("taskName") + "").contains(searchTask_txt)) {
-                                homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+""));
+                                homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
 
                                 Log.d(TAG, task.toString());
                             }

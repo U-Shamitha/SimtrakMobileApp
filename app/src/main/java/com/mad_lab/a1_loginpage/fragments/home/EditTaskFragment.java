@@ -221,6 +221,8 @@ public class EditTaskFragment extends Fragment {
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 Toast.makeText(getContext(), "Task Updated Successfully", Toast.LENGTH_LONG).show();
+                                                                startActivity(new Intent(getActivity(), DashboardActivity.class));
+                                                                getActivity().finish();
                                                             }
                                                         })
                                                         .addOnFailureListener(new OnFailureListener() {
@@ -326,6 +328,8 @@ public class EditTaskFragment extends Fragment {
 
             taskName_et.setText(mapData.get("TaskName") + "");
             assignedDate_et.setText(mapData.get("AssignedDate") + "");
+            deadline_et.setText(mapData.get("Deadline").toString());
+            taskDes_et.setText(mapData.get("Description").toString());
             taskId = mapData.get("TaskId").toString();
 
             //set task type
