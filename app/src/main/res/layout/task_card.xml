@@ -195,8 +195,7 @@
                 <LinearLayout
                     android:id="@+id/description_ll"
                     android:layout_width="match_parent"
-                    android:layout_height="77dp"
-                    android:orientation="vertical"
+                    android:layout_height="20dp"
                     android:visibility="gone">
 
                     <TextView

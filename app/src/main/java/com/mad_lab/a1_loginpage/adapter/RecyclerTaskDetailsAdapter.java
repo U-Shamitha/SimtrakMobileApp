@@ -154,22 +154,23 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                 }
             });
 
-            description_ll.setOnTouchListener(new View.OnTouchListener() {
+            description_ll.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
+                public void onClick(View view) {
                     desExpanded = !desExpanded;
                     if(desExpanded){
                         Toast.makeText(context, "expanding", Toast.LENGTH_LONG).show();
+                        description_ll.setOrientation(LinearLayout.VERTICAL);
                         ViewGroup.LayoutParams params = description_ll.getLayoutParams();
                         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                         description_ll.setLayoutParams(params);
                     }else{
                         Toast.makeText(context, "collapsing", Toast.LENGTH_LONG).show();
+                        description_ll.setOrientation(LinearLayout.HORIZONTAL);
                         ViewGroup.LayoutParams params = description_ll.getLayoutParams();
-                        params.height = 210;
+                        params.height = 60;
                         description_ll.setLayoutParams(params);
                     }
-                    return false;
                 }
             });
 
