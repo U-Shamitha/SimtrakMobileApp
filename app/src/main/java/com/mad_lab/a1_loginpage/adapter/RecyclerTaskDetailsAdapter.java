@@ -119,28 +119,32 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                     taskCardOptionsPopupMenu.inflate(R.menu.task_card_options);
 
                     taskCardOptionsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        Intent intent;
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            Map<String, Object> mapData = new HashMap<>();
+                            mapData.put("TaskId", id_tv.getText());
+                            mapData.put("TaskName", name_tv.getText());
+                            mapData.put("AssignedDate", assignedDate_tv.getText());
+                            mapData.put("Deadline", deadline_tv.getText());
+                            mapData.put("TaskPriority", taskPriority_tv.getText());
+                            mapData.put("TaskType", taskType_tv.getText());
+                            mapData.put("AssignedBy", assignedBy_tv.getText());
+                            mapData.put("Description", description_tv.getText());
+                            storeDataInSharedPrefernces("selectedTaskDetails", mapData);
+                            Log.d("EditTaskData", mapData.toString());
                             switch (item.getItemId()) {
                                 case R.id.taskNotes:
+                                    intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
+                                    intent.putExtra("DesFragment","ViewNotes");
+                                    context.startActivity(intent);
                                     return true;
                                 case R.id.taskLinks:
                                     return true;
                                 case R.id.taskStatus:
                                     return true;
                                 case R.id.editTask:
-                                    Map<String, Object> mapData = new HashMap<>();
-                                    mapData.put("TaskId", id_tv.getText());
-                                    mapData.put("TaskName", name_tv.getText());
-                                    mapData.put("AssignedDate", assignedDate_tv.getText());
-                                    mapData.put("Deadline", deadline_tv.getText());
-                                    mapData.put("TaskPriority", taskPriority_tv.getText());
-                                    mapData.put("TaskType", taskType_tv.getText());
-                                    mapData.put("AssignedBy", assignedBy_tv.getText());
-                                    mapData.put("Description", description_tv.getText());
-                                    storeDataInSharedPrefernces("selectedTaskDetails", mapData);
-                                    Log.d("EditTaskData", mapData.toString());
-                                    Intent intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
+                                    intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
                                     intent.putExtra("DesFragment","EditTask");
                                     context.startActivity(intent);
                                     return true;
@@ -159,13 +163,13 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                 public void onClick(View view) {
                     desExpanded = !desExpanded;
                     if(desExpanded){
-                        Toast.makeText(context, "expanding", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "expanding", Toast.LENGTH_LONG).show();
                         description_ll.setOrientation(LinearLayout.VERTICAL);
                         ViewGroup.LayoutParams params = description_ll.getLayoutParams();
                         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                         description_ll.setLayoutParams(params);
                     }else{
-                        Toast.makeText(context, "collapsing", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "collapsing", Toast.LENGTH_LONG).show();
                         description_ll.setOrientation(LinearLayout.HORIZONTAL);
                         ViewGroup.LayoutParams params = description_ll.getLayoutParams();
                         params.height = 60;

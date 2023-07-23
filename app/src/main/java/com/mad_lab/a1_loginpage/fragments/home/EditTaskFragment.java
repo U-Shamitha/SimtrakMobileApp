@@ -2,6 +2,7 @@ package com.mad_lab.a1_loginpage.fragments.home;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -260,7 +261,6 @@ public class EditTaskFragment extends Fragment {
                                     Log.d(TAG, "user doc not found"+e.getMessage());
                                 }
                             });
-                    ;
 
 
 
@@ -300,13 +300,20 @@ public class EditTaskFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
                 deadline_et.setText(selectedDate);
             }
         }, year, month, day);
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+//                deadline_et.setText(selectedDate);
+//            }
+//        }, year, month, day);
 
         datePickerDialog.show();
 
@@ -330,6 +337,7 @@ public class EditTaskFragment extends Fragment {
             assignedDate_et.setText(mapData.get("AssignedDate") + "");
             deadline_et.setText(mapData.get("Deadline").toString());
             taskDes_et.setText(mapData.get("Description").toString());
+            Toast.makeText(getContext(), "taskId: "+mapData.get("TaskId").toString(), Toast.LENGTH_LONG).show();
             taskId = mapData.get("TaskId").toString();
 
             //set task type

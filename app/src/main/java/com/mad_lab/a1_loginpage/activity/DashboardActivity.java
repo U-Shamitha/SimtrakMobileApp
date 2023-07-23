@@ -22,9 +22,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.fragments.home.AddNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardHomeFragment;
+import com.mad_lab.a1_loginpage.fragments.home.EditNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditTaskFragment;
+import com.mad_lab.a1_loginpage.fragments.home.ViewNotesFragment;
 import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.JournalFragment;
@@ -85,6 +88,12 @@ public class DashboardActivity extends AppCompatActivity {
             // Load the corresponding fragment based on the extracted value
             if ("EditTask".equals(fragmentType)) {
                 loadFragment(new EditTaskFragment());
+            } else if ("ViewNotes".equals(fragmentType)) {
+                loadFragment(new ViewNotesFragment());
+            } else if ("AddNote".equals(fragmentType)) {
+                loadFragment(new AddNoteFragment());
+            }else if ("EditNote".equals(fragmentType)) {
+                loadFragment(new EditNoteFragment());
             }
         }else{
             loadFragment();
@@ -240,6 +249,15 @@ public class DashboardActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.dashboardFragment_container, fragment);
         ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    public void loadFragment(Fragment fragment, String fragmentName){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.dashboardFragment_container, fragment);
+//        fm.popBackStack(fragmentName, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        ft.addToBackStack(fragmentName);
         ft.commit();
     }
 }
