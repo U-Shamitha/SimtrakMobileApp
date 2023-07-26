@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="0dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -189,13 +189,14 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/homeTasks_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="40dp"
+                    android:clipToPadding="false"/>
 
             </LinearLayout>
 
-        </LinearLayout>
 
+        </LinearLayout>
 <!--    </ScrollView>-->
 
 </LinearLayout>

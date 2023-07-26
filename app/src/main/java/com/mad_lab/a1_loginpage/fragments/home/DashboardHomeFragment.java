@@ -144,6 +144,8 @@ public class DashboardHomeFragment extends Fragment {
     }
 
     private void setUserName() {
+        Toast.makeText(getContext(), "fn"+getDataFromSharedPrefernces("firstName"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "ln"+getDataFromSharedPrefernces("lastName"), Toast.LENGTH_SHORT).show();
         userName_tv.setText(getDataFromSharedPrefernces("firstName")+" "+getDataFromSharedPrefernces("lastName"));
     }
 
@@ -213,6 +215,7 @@ public class DashboardHomeFragment extends Fragment {
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                     ArrayList<Map<String, Object>> tasks= (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks");
                     Log.d(TAG, "documentSnapshotTasksData: "+documentSnapshot.get("tasks"));
                     Log.d(TAG, "tasks: "+tasks);
