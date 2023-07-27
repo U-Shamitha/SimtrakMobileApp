@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edit Note"
+                        android:text="Edit Note Link"
                         android:textSize="20sp"
                         android:textColor="@color/white"
                         android:paddingLeft="20dp"/>
@@ -55,22 +55,22 @@
                     android:padding="20dp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/note_tl"
+                        android:id="@+id/noteLink_tl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:startIconDrawable="@drawable/ic_baseline_edit_note_24"
-                        app:startIconContentDescription="Note"
+                        app:startIconDrawable="@drawable/baseline_add_link_24"
+                        app:startIconContentDescription="Note Link"
                         android:textColorHint="@color/dark_grey"
                         app:boxStrokeWidth="0.5dp"
                         style="@style/TextInputLayoutStyle"
                         android:layout_marginBottom="10dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/note_et"
+                            android:id="@+id/noteLink_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            android:hint="Note"
+                            android:hint="Note Link"
                             android:textColor="@color/black"
                             android:layout_marginBottom="5dp"
                             />
@@ -78,84 +78,27 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/file_tl"
+                        android:id="@+id/noteLinkType_tl"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:startIconDrawable="@drawable/baseline_upload_file_24"
-                        app:startIconContentDescription="Upload Files"
+                        android:layout_marginTop="10dp"
                         android:textColorHint="@color/dark_grey"
-                        app:boxStrokeWidth="0.5dp"
-                        style="@style/TextInputLayoutStyle"
-                        android:layout_marginBottom="10dp">
+                        app:boxStrokeColor="@color/my_primary_color"
+                        app:startIconContentDescription="Link Type"
+                        app:startIconDrawable="@drawable/baseline_category_24"
+                        app:startIconTint="@color/dark_grey">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/file_et"
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/noteLinkType_atv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:hint="Uplaod files"
-                            android:textColor="@color/black"
-                            android:layout_marginBottom="5dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="65dp"
                             android:editable="false"
-                            />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <LinearLayout
-                        android:id="@+id/progressBar_ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="7dp"
-                        android:gravity="center_vertical"
-                        android:weightSum="1"
-                        android:visibility="gone"
-                        >
-                        <TextView
-                            android:id="@+id/uploadingFileName_tv"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="uploading  "
-                            android:textAlignment="viewStart"
-                            android:layout_weight="0.8"
-                            android:paddingHorizontal="10dp" />
-                        <TextView
-                            android:id="@+id/uploadPer_tv"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="  %"
-                            android:layout_weight="0.15"
-                            android:visibility="gone"/>
-                        <ProgressBar
-                            android:id="@+id/progressBar"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:max="100"
-                            android:layout_weight="0.05"
-                            android:visibility="gone"
-                            />
-                    </LinearLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/timeTaken_tl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:startIconDrawable="@drawable/baseline_access_time_24"
-                        app:startIconContentDescription="Time Taken"
-                        android:textColorHint="@color/dark_grey"
-                        app:boxStrokeWidth="0.5dp"
-                        style="@style/TextInputLayoutStyle"
-                        android:layout_marginBottom="10dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/timeTaken_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:hint="Time Taken"
-                            android:textColor="@color/black"
-                            android:layout_marginBottom="5dp"
-                            />
+                            android:hint="Link Type"
+                            android:textSize="16dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +116,7 @@
                         />
 
                     <Button
-                        android:id="@+id/addNote_btn"
+                        android:id="@+id/editNoteLink_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="SUBMIT"

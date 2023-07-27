@@ -144,8 +144,8 @@ public class DashboardHomeFragment extends Fragment {
     }
 
     private void setUserName() {
-        Toast.makeText(getContext(), "fn"+getDataFromSharedPrefernces("firstName"), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "ln"+getDataFromSharedPrefernces("lastName"), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "fn"+getDataFromSharedPrefernces("firstName"), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "ln"+getDataFromSharedPrefernces("lastName"), Toast.LENGTH_SHORT).show();
         userName_tv.setText(getDataFromSharedPrefernces("firstName")+" "+getDataFromSharedPrefernces("lastName"));
     }
 

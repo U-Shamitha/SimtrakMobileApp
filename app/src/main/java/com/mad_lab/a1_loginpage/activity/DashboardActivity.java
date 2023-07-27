@@ -23,10 +23,13 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteFragment;
+import com.mad_lab.a1_loginpage.fragments.home.AddNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardHomeFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditNoteFragment;
+import com.mad_lab.a1_loginpage.fragments.home.EditNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditTaskFragment;
+import com.mad_lab.a1_loginpage.fragments.home.ViewNoteLinksFragment;
 import com.mad_lab.a1_loginpage.fragments.home.ViewNotesFragment;
 import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
@@ -94,6 +97,12 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new AddNoteFragment());
             }else if ("EditNote".equals(fragmentType)) {
                 loadFragment(new EditNoteFragment());
+            }else if ("ViewNoteLinks".equals(fragmentType)) {
+                loadFragment(new ViewNoteLinksFragment());
+            }else if ("EditNoteLink".equals(fragmentType)) {
+                loadFragment(new EditNoteLinkFragment());
+            }else if ("AddNoteLink".equals(fragmentType)) {
+                loadFragment(new AddNoteLinkFragment());
             }
         }else{
             loadFragment();

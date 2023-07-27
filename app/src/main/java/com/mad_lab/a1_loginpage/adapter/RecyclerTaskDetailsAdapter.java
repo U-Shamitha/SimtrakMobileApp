@@ -140,6 +140,9 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                                     context.startActivity(intent);
                                     return true;
                                 case R.id.taskLinks:
+                                    intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
+                                    intent.putExtra("DesFragment","ViewNoteLinks");
+                                    context.startActivity(intent);
                                     return true;
                                 case R.id.taskStatus:
                                     return true;

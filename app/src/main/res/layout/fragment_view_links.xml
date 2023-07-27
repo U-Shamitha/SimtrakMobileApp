@@ -46,13 +46,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@id/add_notes_bt"
+                        android:layout_toLeftOf="@id/add_noteLinks_bt"
                         android:backgroundTint="@android:color/transparent"
                         android:src="@drawable/ic_baseline_filter_alt_24"
                         app:tint="@color/my_primary_color" />
 
                     <ImageButton
-                        android:id="@+id/add_notes_bt"
+                        android:id="@+id/add_noteLinks_bt"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -69,7 +69,7 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_notes"
+                        android:id="@+id/search_noteLinks"
                         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notes_recyclerView"
+            android:id="@+id/noteLinks_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"/>

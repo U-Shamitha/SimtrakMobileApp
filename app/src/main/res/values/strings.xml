@@ -99,4 +99,13 @@
         <item>Paused</item>
     </string-array>
 
+
+    <!--    Edit Note Link *************************************************************************************************************-->
+
+    <!--    Note Link Type spinner-->
+    <string-array name="noteLinkTypeSpinnerList">
+        <item>Editable Link</item>
+        <item>Viewing Link</item>
+    </string-array>
+
 </resources>
