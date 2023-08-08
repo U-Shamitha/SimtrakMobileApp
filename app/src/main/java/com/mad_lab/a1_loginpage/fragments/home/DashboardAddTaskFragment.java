@@ -256,28 +256,7 @@ public class DashboardAddTaskFragment extends Fragment {
                             Log.d(TAG, "user doc not found"+e.getMessage());
                         }
                     });
-                    ;
 
-
-
-//                    Map<String, Object> docData = new HashMap<>();
-//                    docData.put("favFoods", Arrays.asList("Hamburger", "Vegetables"));
-
-//                    documentReference.set(task)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void unused) {
-////                                    Toast.makeText(getContext(), "task data uploaded to firestore", Toast.LENGTH_SHORT).show();
-//                                    storeDataInSharedPrefernces("userId", userId);
-//                                    Log.d(TAG, "task data uploaded to firestore");
-//                                }
-//                            })
-//                            .addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Log.e(TAG, "unable to upload user data to firestore");
-//                                }
-//                            });
 
                 }
 

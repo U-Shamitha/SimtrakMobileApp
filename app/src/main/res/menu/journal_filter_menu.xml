@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+    <item
+        android:id="@+id/journalStatus_sort"
+        android:title="Journal Status" >
+        <menu>
+            <item
+                android:id="@+id/journalStatusInProcess_sort"
+                android:title="In Process" />
+            <item
+                android:id="@+id/journalStatusApproved_sort"
+                android:title="Approved" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/journalReport_sort"
+        android:title="Report"/>
+    <item
+        android:id="@+id/journalLearnings_sort"
+        android:title="Learnings" />
+    <item
+        android:id="@+id/journalPendings_sort"
+        android:title="Pendings" />
+    <item
+        android:id="@+id/journalAdminRemarks_sort"
+        android:title="Admin Remarks" />
+    <item
+        android:id="@+id/journalLeaderRemarks_sort"
+        android:title="Leader Remarks" />
+</menu>

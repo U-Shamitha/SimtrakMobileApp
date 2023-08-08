@@ -60,6 +60,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.id_tv.setText(arrTaskDetails.get(position).id);
+        holder.status_tv.setText(arrTaskDetails.get(position).status);
         holder.assignedDate_tv.setText(arrTaskDetails.get(position).assignedDate);
         holder.name_tv.setText(arrTaskDetails.get(position).name);
         holder.deadline_tv.setText(arrTaskDetails.get(position).deadline);
@@ -91,7 +92,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id_tv, name_tv, assignedDate_tv, deadline_tv, assignedBy_tv, taskCardMenu_btn, taskType_tv, taskPriority_tv, description_tv;
+        TextView id_tv, status_tv, name_tv, assignedDate_tv, deadline_tv, assignedBy_tv, taskCardMenu_btn, taskType_tv, taskPriority_tv, description_tv;
         LinearLayout deadline_ll, description_ll;
 
         boolean desExpanded = false;
@@ -100,6 +101,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
             super(itemView);
             id_tv = itemView.findViewById(R.id.id_tv);
             name_tv = itemView.findViewById(R.id.name_tv);
+            status_tv = itemView.findViewById(R.id.status_tv);
             assignedDate_tv = itemView.findViewById(R.id.assignedDate_tv);
             deadline_tv = itemView.findViewById(R.id.deadline_tv);
             taskPriority_tv = itemView.findViewById(R.id.taskPriority_tv);
@@ -131,6 +133,7 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                             mapData.put("TaskType", taskType_tv.getText());
                             mapData.put("AssignedBy", assignedBy_tv.getText());
                             mapData.put("Description", description_tv.getText());
+                            mapData.put("TaskStatus", status_tv.getText());
                             storeDataInSharedPrefernces("selectedTaskDetails", mapData);
                             Log.d("EditTaskData", mapData.toString());
                             switch (item.getItemId()) {
@@ -145,6 +148,9 @@ public class RecyclerTaskDetailsAdapter extends RecyclerView.Adapter<RecyclerTas
                                     context.startActivity(intent);
                                     return true;
                                 case R.id.taskStatus:
+                                    intent= new Intent(context.getApplicationContext(), DashboardActivity.class);
+                                    intent.putExtra("DesFragment","EditTaskStatus");
+                                    context.startActivity(intent);
                                     return true;
                                 case R.id.editTask:
                                     intent= new Intent(context.getApplicationContext(), DashboardActivity.class);

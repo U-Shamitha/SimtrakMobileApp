@@ -168,7 +168,7 @@ public class DashboardHomeFragment extends Fragment {
 
                     if(tasks!=null){
                         for (Map<String, Object> task : tasks) {
-                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
+                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskStatus")+"",task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
                             Log.d(TAG, task.toString());
                         }
                     }
@@ -179,16 +179,48 @@ public class DashboardHomeFragment extends Fragment {
                 }
             });
 
+        }
 
-//            usersRef.document(userId).addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-//                    Map<String, Object> tasks= (Map<String, Object>) documentSnapshot.getBlob("tasks");
-//                    Log.d(TAG, "documentSnapshotTasksData: "+documentSnapshot.getString("tasks"));
-//                    Log.d(TAG, "tasks: "+tasks);
-//
-//                }
-//            });
+    }
+
+    private void getFilterTasksDataFromFireStore(String filterType, String filterOption) {
+
+        homeTasksArrayList.clear();
+        homeTasksArrAdapter = new RecyclerTaskDetailsAdapter(getContext(), homeTasksArrayList);
+        homeTasksRecyclerView.setAdapter(homeTasksArrAdapter);
+
+        String userId = getDataFromSharedPrefernces("userId");
+        if(userId!=""){
+
+            CollectionReference usersRef = fstore.collection("users");
+            DocumentReference docRef = fstore.collection("users").document(userId);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                    ArrayList<Map<String, Object>> tasks= (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks");
+                    Log.d(TAG, "documentSnapshotTasksData: "+documentSnapshot.get("tasks"));
+                    Log.d(TAG, "tasks: "+tasks);
+
+                    String[] priorities = {"0-2 days", "3-7 days", "over 7 days"};
+
+                    for (Map<String, Object> task : tasks) {
+                        if ((task.get(filterType) + "").contains(filterOption)) {
+                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskStatus")+"",task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
+                            Log.d(TAG, task.toString());
+                        }
+                    }
+                    if(desSort){
+                        Collections.reverse(homeTasksArrayList);
+                        desSort=false;
+                    }
+                    homeTasksArrAdapter = new RecyclerTaskDetailsAdapter(getContext(), homeTasksArrayList);
+                    homeTasksRecyclerView.setAdapter(homeTasksArrAdapter);
+                    homeTasksArrAdapter.notifyDataSetChanged();
+
+                }
+            });
+
         }
 
     }
@@ -201,13 +233,6 @@ public class DashboardHomeFragment extends Fragment {
 
         String userId = getDataFromSharedPrefernces("userId");
         if(userId!=""){
-            // Fetch a single document
-//            DocumentSnapshot documentSnapshot = fstore.collection("users").document(userId).get().getResult();
-//            if (documentSnapshot.exists()) {
-//                Log.d(TAG, documentSnapshot.getData()+"");
-//            } else {
-//                Log.d(TAG, "User details not found");
-//            }
 
             CollectionReference usersRef = fstore.collection("users");
 
@@ -225,13 +250,13 @@ public class DashboardHomeFragment extends Fragment {
 
                     if(searchTask_txt.isEmpty() || searchTask_txt.equalsIgnoreCase("all")){
                         for (Map<String, Object> task : tasks) {
-                            homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
+                            homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskStatus")+"", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
                             Log.d(TAG, task.toString());
                         }
                     }else {
                         for (Map<String, Object> task : tasks) {
                             if ((task.get("taskName") + "").contains(searchTask_txt)) {
-                                homeTasksArrayList.add(new TaskDetailsModel("id", task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
+                                homeTasksArrayList.add(new TaskDetailsModel(task.get("taskId")+"", task.get("taskStatus")+"",task.get("taskName")+"", task.get("deadline")+"",task.get("assignedDate")+"",  priorities[(int)(long) task.get("taskPriority")-1]+"", task.get("taskType")+"", task.get("assignedBy")+"", task.get("description")+""));
 
                                 Log.d(TAG, task.toString());
                             }
@@ -371,6 +396,27 @@ public class DashboardHomeFragment extends Fragment {
                         }
                         homeTasksArrAdapter.notifyDataSetChanged();
                         return true;
+
+                    case R.id.taskStatus_sort:
+//                        Toast.makeText(getContext(), "task status sel desSort: "+ desSort, Toast.LENGTH_SHORT).show();
+                        return false;
+
+                    case R.id.taskStatusCompleted_sort:
+                        getFilterTasksDataFromFireStore("taskStatus", "Completed");
+                        return true;
+
+                    case R.id.taskStatusOngoing_sort:
+                        getFilterTasksDataFromFireStore("taskStatus", "Ongoing");
+                        return true;
+
+                    case R.id.taskStatusPaused_sort:
+                        getFilterTasksDataFromFireStore("taskStatus", "Paused");
+                        return true;
+
+                    case R.id.taskStatusPurged_sort:
+                        getFilterTasksDataFromFireStore("taskStatus", "Purged");
+                        return true;
+
                     default:
                         return false;
                 }

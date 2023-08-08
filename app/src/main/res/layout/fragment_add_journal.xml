@@ -85,12 +85,13 @@
                         android:textSize="16dp"
                         android:hint="Task Topic"
                         android:ems="10"
-                        android:editable="false"/>
+                        android:editable="false"
+                        android:paddingLeft="15dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/taskDone_tl"
+                    android:id="@+id/taskNote_tl"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +101,7 @@
                     app:boxStrokeColor="@color/my_primary_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/taskDone"
+                        android:id="@+id/taskNote_et"
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:gravity="top"
@@ -121,7 +122,7 @@
                     app:boxStrokeColor="@color/my_primary_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/learnings"
+                        android:id="@+id/learnings_et"
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:gravity="top"
@@ -228,7 +229,7 @@
                     app:boxStrokeColor="@color/my_primary_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/otherDevelopments"
+                        android:id="@+id/otherDevelopments_et"
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:gravity="top"
@@ -249,7 +250,7 @@
                     app:boxStrokeColor="@color/my_primary_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/meetingsAttended"
+                        android:id="@+id/meetingsAttended_et"
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:gravity="top"
@@ -286,7 +287,19 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/errorMsg_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Error message appear here"
+                    android:textColor="@color/red"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    />
+
                 <Button
+                    android:id="@+id/addJournal_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SUBMIT"

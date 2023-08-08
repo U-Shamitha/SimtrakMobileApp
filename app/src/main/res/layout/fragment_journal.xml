@@ -43,16 +43,17 @@
                         android:textStyle="bold" />
 
                     <ImageButton
+                        android:id="@+id/journalFilter_btn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@id/add_task_bt"
+                        android:layout_toLeftOf="@id/add_journal_bt"
                         android:backgroundTint="@android:color/transparent"
                         android:src="@drawable/ic_baseline_filter_alt_24"
                         app:tint="@color/my_primary_color" />
 
                     <ImageButton
-                        android:id="@+id/add_task_bt"
+                        android:id="@+id/add_journal_bt"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -64,19 +65,28 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/search_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+
+                    android:background="@drawable/round_border">
+
+                    <ImageView
+                        android:id="@+id/search_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_search_24"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"/>
 
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search_journal"
                         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/round_border"
-                        android:foregroundTint="@color/my_primary_color"
                         app:iconifiedByDefault="false"
-                        app:queryHint="Search your journals" />
+                        app:searchIcon="@null"
+                        app:queryHint="Search Journals" />
 
                 </LinearLayout>
 

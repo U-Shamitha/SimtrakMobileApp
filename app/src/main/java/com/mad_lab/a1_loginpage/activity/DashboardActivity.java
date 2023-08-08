@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,11 +28,12 @@ import com.mad_lab.a1_loginpage.fragments.home.DashboardHomeFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.EditTaskFragment;
+import com.mad_lab.a1_loginpage.fragments.home.EditTaskStatusFragment;
 import com.mad_lab.a1_loginpage.fragments.home.ViewNoteLinksFragment;
 import com.mad_lab.a1_loginpage.fragments.home.ViewNotesFragment;
 import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
-import com.mad_lab.a1_loginpage.fragments.trainees.JournalFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.ViewJournalsFragment;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -103,6 +103,12 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new EditNoteLinkFragment());
             }else if ("AddNoteLink".equals(fragmentType)) {
                 loadFragment(new AddNoteLinkFragment());
+            }else if ("EditTaskStatus".equals(fragmentType)) {
+                loadFragment(new EditTaskStatusFragment());
+            }else if ("ViewJournals".equals(fragmentType)) {
+                loadFragment(new ViewJournalsFragment());
+            }else if ("AddJournal".equals(fragmentType)) {
+                loadFragment(new AddJournalFragment());
             }
         }else{
             loadFragment();
@@ -171,7 +177,7 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else if(itemId==R.id.daily_journal){
                   selected_page_tv.setText("Daily Journal");
-                  loadFragment(new JournalFragment());
+                  loadFragment(new ViewJournalsFragment());
                 }else if(itemId==R.id.add_journal){
                   selected_page_tv.setText("Add Journal");
                   loadFragment(new AddJournalFragment());
@@ -270,4 +276,5 @@ public class DashboardActivity extends AppCompatActivity {
         ft.addToBackStack(fragmentName);
         ft.commit();
     }
+
 }

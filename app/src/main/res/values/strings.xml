@@ -94,7 +94,7 @@
     <!--    Task Status spinner list-->
     <string-array name="taskStatusSpinnerList">
         <item>Ongoing</item>
-        <item>Complete</item>
+        <item>Completed</item>
         <item>Purged</item>
         <item>Paused</item>
     </string-array>

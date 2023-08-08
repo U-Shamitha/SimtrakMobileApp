@@ -171,6 +171,9 @@ public class EditTaskFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                errMsg_tv.setVisibility(View.GONE);
+                errMsg_tv.setText("Error message appear here");
+
                 String taskName = taskName_et.getText().toString().trim();
                 Integer selectedItemIndex = Integer.parseInt(taskPriority_spinner.getSelectedItem().toString());
                 String taskPriority = PriorityData.getPriorityList().get(selectedItemIndex).getName();

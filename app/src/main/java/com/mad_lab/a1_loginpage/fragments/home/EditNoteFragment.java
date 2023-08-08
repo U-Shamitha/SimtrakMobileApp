@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -422,9 +423,6 @@ public class EditNoteFragment extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             ArrayList<Map<String, Object>> tasks= (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks")!=null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("tasks") : new ArrayList<>();
-//                                        String dateTimeFormat = "dd-MM-yyyy hh:mm:ss";
-//                                        SimpleDateFormat sdtf = new SimpleDateFormat(dateTimeFormat);
-//                                        noteId = sdtf.format(new Date());
 
                             if (tasks != null) {
                                 for (Map<String, Object> task : tasks) {
@@ -476,7 +474,7 @@ public class EditNoteFragment extends Fragment {
                                                 .addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), "Note didn't get added: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getContext(), "Note didn't get edited: "+e.getMessage(), Toast.LENGTH_LONG).show();
                                                     }
                                                 });
 
@@ -485,20 +483,6 @@ public class EditNoteFragment extends Fragment {
                                     }
                                 }
                             }
-//                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                                    @Override
-//                                                    public void onSuccess(Void unused) {
-//                                                        Log.d(TAG, "task data uploaded to firestore");
-//                                                        startActivity(new Intent(getActivity(), DashboardActivity.class));
-//                                                        getActivity().finish();
-//                                                    }
-//                                                })
-//                                                .addOnFailureListener(new OnFailureListener() {
-//                                                    @Override
-//                                                    public void onFailure(@NonNull Exception e) {
-//                                                        Log.d(TAG, "task data upload failed"+e.getMessage());
-//                                                    }
-//                                                });
                         }
                     }
                 })
