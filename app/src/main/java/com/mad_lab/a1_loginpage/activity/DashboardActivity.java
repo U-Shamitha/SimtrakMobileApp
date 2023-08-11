@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.activity.trainees.LeaveApplyActivity;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
@@ -144,6 +145,7 @@ public class DashboardActivity extends AppCompatActivity {
               }
               else if (itemId == R.id.dashboard) {
                   selected_page_tv.setText("Dashboard");
+//                  loadFragment(new DashboardHomeFragment());
                   loadFragment();
               }
               else if (itemId == R.id.add_task) {
@@ -181,7 +183,10 @@ public class DashboardActivity extends AppCompatActivity {
                 }else if(itemId==R.id.add_journal){
                   selected_page_tv.setText("Add Journal");
                   loadFragment(new AddJournalFragment());
-              }
+                } else if(itemId==R.id.leave_apply){
+                    selected_page_tv.setText("Leave Apply");
+                    startActivity(new Intent(DashboardActivity.this, LeaveApplyActivity.class));
+                }
                 else if(itemId==R.id.task_management){
                     Toast.makeText(DashboardActivity.this, "Management", Toast.LENGTH_SHORT).show();
                 }
@@ -229,18 +234,59 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }else{
+//            int fragments = getSupportFragmentManager().getBackStackEntryCount();
+//            if (fragments == 1) {
+//                finish();
+//            }else {
+//                super.onBackPressed();
+//            }
+//        }
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.dashboardFragment_container);
 
+        if (fragment instanceof AddJournalFragment) {
+//            ((YourFragment) fragment).performSpecificActionOnBackPress();
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewJournals");
+            startActivity(intent);
+            finish();
+//            loadFragment(new ViewJournalsFragment());
+        }
+        else if(fragment instanceof AddNoteFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewNotes");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof EditNoteFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewNotes");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof AddNoteLinkFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewNoteLinks");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof EditNoteLinkFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewNoteLinks");
+            startActivity(intent);
+            finish();
+        }
+        else {
             int fragments = getSupportFragmentManager().getBackStackEntryCount();
             if (fragments == 1) {
                 finish();
             }else {
                 super.onBackPressed();
             }
-
         }
+
 
     }
 
@@ -253,8 +299,8 @@ public class DashboardActivity extends AppCompatActivity {
         selected_page_tv.setText("Dashboard");
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-//        ft.replace(R.id.dashboardFragment_container, new DashboardHomeFragment());
-        ft.add(R.id.dashboardFragment_container, new DashboardHomeFragment());
+        ft.replace(R.id.dashboardFragment_container, new DashboardHomeFragment());
+//        ft.add(R.id.dashboardFragment_container, new DashboardHomeFragment());
         fm.popBackStack("root_fragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
         ft.addToBackStack("root_fragment");
         ft.commit();

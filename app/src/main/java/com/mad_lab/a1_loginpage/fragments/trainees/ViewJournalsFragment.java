@@ -149,6 +149,9 @@ public class ViewJournalsFragment extends Fragment {
         return view;
     }
 
+
+
+
     private void getSearchJournalsDataFromFireStore() {
 
         journalArrayList.clear();
@@ -234,20 +237,6 @@ public class ViewJournalsFragment extends Fragment {
             }
 
         });
-
-
-//        if (checkboxItem != null) {
-//            CheckBox checkBox = (CheckBox) checkboxItem.getActionView().findViewById(R.id.menu_item_checkbox);
-//            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                    checkBox.setChecked(!checkBox.isChecked());
-//                    desSort = !desSort;
-//                }
-//            });
-
-
-//        }
 
         filterJournalPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -394,6 +383,5 @@ public class ViewJournalsFragment extends Fragment {
             });
 
         }
-
     }
 }
