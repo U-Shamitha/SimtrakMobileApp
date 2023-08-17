@@ -41,8 +41,8 @@
             android:icon="@drawable/ic_baseline_add_box_24"/>
 
         <item
-            android:id="@+id/leave_apply"
-            android:title="Leave Apply"
+            android:id="@+id/leaves"
+            android:title="Leaves"
             android:icon="@drawable/baseline_work_off_24"/>
 
     </group>

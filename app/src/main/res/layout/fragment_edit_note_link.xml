@@ -96,6 +96,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="65dp"
+                            android:paddingLeft="15dp"
                             android:editable="false"
                             android:hint="Link Type"
                             android:textSize="16dp" />

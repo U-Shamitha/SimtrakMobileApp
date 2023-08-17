@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+    <item
+        android:id="@+id/leaveStatus_sort"
+        android:title="Leave Status" >
+        <menu>
+            <item
+                android:id="@+id/leaveStatusInProcess_sort"
+                android:title="In Process" />
+            <item
+                android:id="@+id/leaveStatusApproved_sort"
+                android:title="Approved" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/startDate_sort"
+        android:title="Start Date"/>
+    <item
+        android:id="@+id/joiningDate_sort"
+        android:title="Joining Date"/>
+    <item
+        android:id="@+id/leaveReason_sort"
+        android:title="Reason" />
+    <item
+        android:id="@+id/leaveAdminRemarks_sort"
+        android:title="Admin Remarks" />
+    <item
+        android:id="@+id/leaveLeaderRemarks_sort"
+        android:title="Leader Remarks" />
+</menu>

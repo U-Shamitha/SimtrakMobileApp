@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+
+    <item
+        android:id="@+id/noteId_sort"
+        android:title="Note ID"/>
+    <item
+        android:id="@+id/timeTaken_sort"
+        android:title="Time Taken" />
+    <item
+        android:id="@+id/note_sort"
+        android:title="Note" />
+</menu>

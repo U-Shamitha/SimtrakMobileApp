@@ -32,33 +32,21 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/date_tv"
+                    android:id="@+id/cardHeading_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:text="23-06-23"
                     android:textColor="@color/my_primary_color"
                     android:textSize="18sp" />
-                
-                <RatingBar
-                    android:id="@+id/ratingOfDay"
-                    android:layout_width="234dp"
-                    android:layout_height="40dp"
-                    android:numStars="5"
-                    android:scaleX="0.4"
-                    android:scaleY="0.4"
-                    android:isIndicator="true"
-                    android:layout_marginRight="-45dp"
-                    android:layout_marginTop="-4dp"
-                    android:layout_alignParentRight="true"/>
 
-<!--                <Button-->
-<!--                    android:id="@+id/menu"-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:layout_alignParentRight="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:background="@drawable/ic_baseline_more_vert_24" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/menu"-->
+                <!--                    android:layout_width="25dp"-->
+                <!--                    android:layout_height="25dp"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:background="@drawable/ic_baseline_more_vert_24" />-->
 
             </RelativeLayout>
 
@@ -93,7 +81,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/journalId_tv"
+                            android:id="@+id/leaveId_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
                             android:text="id"
@@ -116,14 +104,14 @@
                             android:layout_width="75pt"
                             android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/status_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="in-process  "
-                            android:textColor="#051EAA"
-                            android:textSize="15sp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:id="@+id/status_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="in-process  "
+                                android:textColor="#051EAA"
+                                android:textSize="15sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:id="@+id/status_iv"
@@ -142,18 +130,17 @@
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Report"
+                            android:text="Start Date"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/report_tv"
+                            android:id="@+id/startDate_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="your report"
+                            android:text="start date"
                             android:textSize="15sp"
                             android:textStyle="italic" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -163,78 +150,80 @@
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Learnings"
+                            android:text="Joining Date"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/learnings_tv"
+                            android:id="@+id/joiningDate_tv"
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="your learnings"
+                            android:text="joining date"
+                            android:textSize="15sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/reason_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+
+                        <TextView
+                            android:layout_width="75pt"
+                            android:layout_height="wrap_content"
+                            android:text="Reason"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/reason_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="reason"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/adminRemarks_ll"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="75pt"
-                            android:layout_height="wrap_content"
-                            android:text="Pendings"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/pendings_tv"
-                            android:layout_width="75pt"
-                            android:layout_height="wrap_content"
-                            android:text="your pendings"
-                            android:textSize="15sp"
-                            android:textStyle="italic" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="20dp">
 
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
                             android:text="Admin Remarks"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                         <TextView
                             android:id="@+id/adminRemarks_tv"
-                            android:layout_width="75pt"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="your admin remarks"
+                            android:text="admin Remarks"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/leaderRemarks_ll"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="20dp">
 
                         <TextView
                             android:layout_width="75pt"
                             android:layout_height="wrap_content"
-                            android:text="Leader Remarks"
+                            android:text="Note"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                         <TextView
                             android:id="@+id/leaderRemarks_tv"
-                            android:layout_width="75pt"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="your leader remarks"
+                            android:text="leader remarks"
                             android:textSize="15sp"
                             android:textStyle="italic" />
 

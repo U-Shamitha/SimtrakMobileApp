@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -36,23 +37,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Your Notes"
+                        android:text="Your Leaves"
                         android:textColor="@color/my_primary_color"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageButton
-                        android:id="@+id/sort_ib"
+                        android:id="@+id/leaveFilter_btn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@id/add_notes_bt"
+                        android:layout_toLeftOf="@+id/addLeave_btn"
                         android:backgroundTint="@android:color/transparent"
                         android:src="@drawable/ic_baseline_filter_alt_24"
                         app:tint="@color/my_primary_color" />
 
                     <ImageButton
-                        android:id="@+id/add_notes_bt"
+                        android:id="@+id/addLeave_btn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -79,13 +80,13 @@
                         android:layout_marginLeft="20dp"/>
 
                     <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_notes"
+                        android:id="@+id/search_leave"
                         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:iconifiedByDefault="false"
                         app:searchIcon="@null"
-                        app:queryHint="Search your notes" />
+                        app:queryHint="Search Leaves" />
 
                 </LinearLayout>
 
@@ -94,12 +95,10 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notes_recyclerView"
+            android:id="@+id/leaves_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:paddingBottom="40dp"
-            android:clipToPadding="false"/>
+            android:layout_marginHorizontal="10dp"/>
 
 
     </LinearLayout>

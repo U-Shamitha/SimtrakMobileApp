@@ -52,6 +52,7 @@ public class RecyclerNotesAdapter extends RecyclerView.Adapter<RecyclerNotesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.taskName_tv.setText(arrNotes.get(position).taskName);
         holder.id_tv.setText(arrNotes.get(position).id);
         holder.givenOn_tv.setText(arrNotes.get(position).givenOn);
         holder.givenBy_tv.setText(arrNotes.get(position).givenBy);
@@ -76,7 +77,7 @@ public class RecyclerNotesAdapter extends RecyclerView.Adapter<RecyclerNotesAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id_tv, note_tv, givenOn_tv, givenBy_tv, timeTaken_tv;
+        TextView taskName_tv, id_tv, note_tv, givenOn_tv, givenBy_tv, timeTaken_tv;
 
         Button noteMenu_btn;
         LinearLayout note_ll;
@@ -85,6 +86,7 @@ public class RecyclerNotesAdapter extends RecyclerView.Adapter<RecyclerNotesAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            taskName_tv = itemView.findViewById(R.id.name_tv);
             id_tv = itemView.findViewById(R.id.id_tv);
             givenOn_tv = itemView.findViewById(R.id.givenOn_tv);
             givenBy_tv = itemView.findViewById(R.id.givenBy_tv);

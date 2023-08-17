@@ -143,6 +143,17 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <TextView
+                            android:id="@+id/errorMsg_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Error message appear here"
+                            android:textColor="@color/red"
+                            android:textAlignment="center"
+                            android:visibility="gone"
+                            android:layout_marginTop="15dp"
+                            />
+
                         <Button
                             android:id="@+id/leaveApply_btn"
                             android:layout_width="match_parent"

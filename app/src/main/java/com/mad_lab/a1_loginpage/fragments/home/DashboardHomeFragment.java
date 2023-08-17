@@ -3,6 +3,7 @@ package com.mad_lab.a1_loginpage.fragments.home;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -33,6 +35,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mad_lab.a1_loginpage.R;
+import com.mad_lab.a1_loginpage.activity.DashboardActivity;
 import com.mad_lab.a1_loginpage.adapter.RecyclerTaskDetailsAdapter;
 import com.mad_lab.a1_loginpage.model.TaskDetailsModel;
 
@@ -48,6 +51,7 @@ public class DashboardHomeFragment extends Fragment {
     LinearLayout search_ll;
     SearchView searchTask;
     ImageView search_iv;
+    ImageButton addTask_btn;
     RecyclerView homeTasksRecyclerView;
     RecyclerTaskDetailsAdapter homeTasksArrAdapter ;
     ArrayList<TaskDetailsModel> homeTasksArrayList;
@@ -73,6 +77,7 @@ public class DashboardHomeFragment extends Fragment {
         search_ll = view.findViewById(R.id.search_ll);
         searchTask = view.findViewById(R.id.search_task);
         search_iv = view.findViewById(R.id.search_iv);
+        addTask_btn = view.findViewById(R.id.add_task_bt);
         homeTasksRecyclerView = view.findViewById(R.id.homeTasks_recyclerView);
         homeTasksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         homeTasksArrayList = new ArrayList<>();
@@ -134,6 +139,16 @@ public class DashboardHomeFragment extends Fragment {
                 getSearchTasksDataFromFireStore();
             }
         });
+
+        addTask_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getContext().getApplicationContext(), DashboardActivity.class);
+                intent.putExtra("DesFragment","AddTask");
+                getActivity().startActivity(intent);
+            }
+        });
+
 
         setUserName();
         getTasksDataFromFireStore();

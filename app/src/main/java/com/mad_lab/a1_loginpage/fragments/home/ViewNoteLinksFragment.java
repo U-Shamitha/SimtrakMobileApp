@@ -46,7 +46,7 @@ public class ViewNoteLinksFragment extends Fragment {
     FirebaseFirestore fstore;
     String TAG = "ViewLinksFragment";
 
-    String taskId, givenOn, givenBy;
+    String taskId, taskName, givenOn, givenBy;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,7 +116,7 @@ public class ViewNoteLinksFragment extends Fragment {
                                         if (noteLinks != null) {
                                             for (Map<String, Object> noteLink : noteLinks) {
 //                                            if ((task.get("taskName") + "").contains(searchTask_txt)) {
-                                                noteLinksArrayList.add(new NoteLinksModel(noteLink.get("noteLinkId") + "",  givenOn + "", givenBy + "",noteLink.get("noteLink") + "", noteLink.get("noteLinkType") + ""));
+                                                noteLinksArrayList.add(new NoteLinksModel(taskName+"",noteLink.get("noteLinkId") + "",  givenOn + "", givenBy + "",noteLink.get("noteLink") + "", noteLink.get("noteLinkType") + ""));
 //                                            }
                                             }
                                             noteLinksArrAdapter = new RecyclerNoteLinksAdapter(getContext(), noteLinksArrayList);
@@ -152,6 +152,7 @@ public class ViewNoteLinksFragment extends Fragment {
 
             Toast.makeText(getContext(), "taskId: "+mapData.get("TaskId").toString(), Toast.LENGTH_LONG).show();
             taskId = mapData.get("TaskId").toString();
+            taskName = mapData.get("TaskName").toString();
             givenOn = mapData.get("AssignedDate").toString();
             givenBy = mapData.get("AssignedBy").toString();
         }
