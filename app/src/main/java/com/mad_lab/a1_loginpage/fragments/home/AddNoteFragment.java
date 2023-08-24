@@ -208,6 +208,11 @@ public class AddNoteFragment extends Fragment {
                     if(selectedFileUris.size()>0){
                         uploadFilesToFirebaseStorage(view);
                     }else {
+                        if(noteId==null) {
+                            String dateTimeFormat = "dd-MM-yyyy hh:mm:ss";
+                            SimpleDateFormat sdtf = new SimpleDateFormat(dateTimeFormat);
+                            noteId = sdtf.format(new Date());
+                        }
                         performSubmission(view, false);
                     }
                 }
@@ -389,9 +394,10 @@ public class AddNoteFragment extends Fragment {
 //                                        Toast.makeText(getContext(),uploadedFileUrls.toString(), Toast.LENGTH_LONG).show();
                                         Toast.makeText(getContext(),"Files uploaded successfully", Toast.LENGTH_LONG).show();
                                         Log.d("Uploads", "File URLs: " + uploadedFileUrls.toString());
+                                        performSubmission(view, true);
                                     }
 
-                                    performSubmission(view, true);
+//                                    performSubmission(view, true);
                                 }
                             }
                         });

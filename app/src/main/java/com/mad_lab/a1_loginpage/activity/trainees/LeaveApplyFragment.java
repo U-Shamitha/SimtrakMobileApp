@@ -1,7 +1,6 @@
 package com.mad_lab.a1_loginpage.activity.trainees;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -10,10 +9,15 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -22,7 +26,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -37,32 +40,34 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LeaveApplyActivity extends AppCompatActivity {
+public class LeaveApplyFragment extends Fragment {
 
     TextInputLayout leaveFrom_tl, joiningDate_tl, reasonForLeave_tl, responsibilitiesPassedTo_tl;
     TextInputEditText leaveFrom_et, joiningDate_et, reasonForLeave_et, responsibilitiesPassedTo_et;
 
     Button applyLeave_btn;
     TextView errMsg_tv;
-    String TAG = "LeaveApplyFragment";
+    String TAG = "LeaveApplyActivity";
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leave_apply);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_leave_apply, container, false);
 
-        leaveFrom_tl = findViewById(R.id.leaveFrom_tl);
-        joiningDate_tl = findViewById(R.id.joiningDate_tl);
-        reasonForLeave_tl = findViewById(R.id.reasonForLeave_tl);
-        responsibilitiesPassedTo_tl = findViewById(R.id.responsibilitiesPassedTo_tl);
+        leaveFrom_tl = view.findViewById(R.id.leaveFrom_tl);
+        joiningDate_tl = view.findViewById(R.id.joiningDate_tl);
+        reasonForLeave_tl = view.findViewById(R.id.reasonForLeave_tl);
+        responsibilitiesPassedTo_tl = view.findViewById(R.id.responsibilitiesPassedTo_tl);
 
-        leaveFrom_et = findViewById(R.id.leaveFrom_et);
-        joiningDate_et = findViewById(R.id.joiningDate_et);
-        reasonForLeave_et = findViewById(R.id.reasonForLeave_et);
-        responsibilitiesPassedTo_et = findViewById(R.id.responsibilitiesPassedTo_et);
+        leaveFrom_et = view.findViewById(R.id.leaveFrom_et);
+        joiningDate_et = view.findViewById(R.id.joiningDate_et);
+        reasonForLeave_et = view.findViewById(R.id.reasonForLeave_et);
+        responsibilitiesPassedTo_et = view.findViewById(R.id.responsibilitiesPassedTo_et);
 
-        applyLeave_btn = findViewById(R.id.leaveApply_btn);
-        errMsg_tv = findViewById(R.id.errorMsg_tv);
+        applyLeave_btn = view.findViewById(R.id.leaveApply_btn);
+        errMsg_tv = view.findViewById(R.id.errorMsg_tv);
 
         changeIconColorOnFocus(leaveFrom_tl,leaveFrom_et, "start");
         changeIconColorOnFocus(joiningDate_tl,joiningDate_et, "start");
@@ -80,12 +85,8 @@ public class LeaveApplyActivity extends AppCompatActivity {
         });
 
 
-    }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(LeaveApplyActivity.this, ViewLeavesActivity.class));
-        finish();
+        return view;
     }
 
     public void changeIconColorOnFocus(TextInputLayout tl, TextInputEditText et, String iconPosition) {
@@ -137,7 +138,7 @@ public class LeaveApplyActivity extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
@@ -216,8 +217,10 @@ public class LeaveApplyActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.d(TAG, "leave data uploaded to firestore");
-                                            startActivity(new Intent(LeaveApplyActivity.this, ViewLeavesActivity.class));
-                                            finish();
+                                            Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                                            intent.putExtra("DesFragment", "ViewLeaves");
+                                            startActivity(intent);
+                                            getActivity().finish();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -240,9 +243,9 @@ public class LeaveApplyActivity extends AppCompatActivity {
     }
 
     public String getUserDetailsFromSharedPrefernces(String key) {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("UserDetails", MODE_PRIVATE);
         return sharedPreferences.getString(key,"");
     }
 
-}
 
+}

@@ -42,7 +42,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.model.Users;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -311,6 +313,11 @@ public class LoginActivity extends AppCompatActivity {
                     storeDataInSharedPrefernces("phoneNumber", documentSnapshot.getString("phoneNumber"));
                     storeDataInSharedPrefernces("city", documentSnapshot.getString("city"));
                     storeDataInSharedPrefernces("pincode", documentSnapshot.getString("pincode"));
+
+                    String dateTimeFormat = "dd-MM-yyyy hh:mm:ss";
+                    SimpleDateFormat sdtf = new SimpleDateFormat(dateTimeFormat);
+                    String dateTime = sdtf.format(new Date());
+                    storeDataInSharedPrefernces("lastLogin", dateTime);
                     startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 ////                                    startActivity(new Intent(LoginActivity.this, SimtrakDashboardActivity.class));
                     finish();

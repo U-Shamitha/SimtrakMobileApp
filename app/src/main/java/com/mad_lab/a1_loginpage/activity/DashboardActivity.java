@@ -22,7 +22,9 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.activity.trainees.LeaveApplyActivity;
+import com.mad_lab.a1_loginpage.activity.trainees.LeaveApplyFragment;
 import com.mad_lab.a1_loginpage.activity.trainees.ViewLeavesActivity;
+import com.mad_lab.a1_loginpage.activity.trainees.ViewLeavesFragment;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
@@ -115,6 +117,10 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new ViewJournalsFragment());
             }else if ("AddJournal".equals(fragmentType)) {
                 loadFragment(new AddJournalFragment());
+            }else if ("ViewLeaves".equals(fragmentType)) {
+                loadFragment(new ViewLeavesFragment());
+            }else if ("LeaveApply".equals(fragmentType)) {
+                loadFragment(new LeaveApplyFragment());
             }
         }else{
             loadFragment();
@@ -190,7 +196,8 @@ public class DashboardActivity extends AppCompatActivity {
                   loadFragment(new AddJournalFragment());
                 } else if(itemId==R.id.leaves){
                     selected_page_tv.setText("Leaves");
-                    startActivity(new Intent(DashboardActivity.this, ViewLeavesActivity.class));
+//                    startActivity(new Intent(DashboardActivity.this, ViewLeavesActivity.class));
+                  loadFragment(new ViewLeavesFragment());
                 }
                 else if(itemId==R.id.task_management){
                     Toast.makeText(DashboardActivity.this, "Management", Toast.LENGTH_SHORT).show();
@@ -250,8 +257,25 @@ public class DashboardActivity extends AppCompatActivity {
 //            }
 //        }
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.dashboardFragment_container);
-
-        if (fragment instanceof AddJournalFragment) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if (fragment instanceof ViewJournalsFragment) {
+//            ((YourFragment) fragment).performSpecificActionOnBackPress();
+            Intent intent= new Intent(this, DashboardActivity.class);
+//            intent.putExtra("DesFragment","ViewJournals");
+            startActivity(intent);
+            finish();
+//            loadFragment();
+        }
+        else if (fragment instanceof DashboardAddTaskFragment) {
+//            ((YourFragment) fragment).performSpecificActionOnBackPress();
+            Intent intent= new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish();
+//            loadFragment(new ViewJournalsFragment());
+        }
+        else if (fragment instanceof AddJournalFragment) {
 //            ((YourFragment) fragment).performSpecificActionOnBackPress();
             Intent intent= new Intent(this, DashboardActivity.class);
             intent.putExtra("DesFragment","ViewJournals");
@@ -280,6 +304,17 @@ public class DashboardActivity extends AppCompatActivity {
         else if(fragment instanceof EditNoteLinkFragment){
             Intent intent= new Intent(this, DashboardActivity.class);
             intent.putExtra("DesFragment","ViewNoteLinks");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof LeaveApplyFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewLeaves");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof ViewLeavesFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
             startActivity(intent);
             finish();
         }

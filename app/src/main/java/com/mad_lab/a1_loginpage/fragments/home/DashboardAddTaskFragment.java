@@ -237,7 +237,7 @@ public class DashboardAddTaskFragment extends Fragment {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 Log.d(TAG, "task data uploaded to firestore");
-                                                startActivity(new Intent(getActivity(), DashboardActivity.class));
+                                                startActivity(new Intent(getContext(), DashboardActivity.class));
                                                 getActivity().finish();
                                             }
                                         })
@@ -274,12 +274,12 @@ public class DashboardAddTaskFragment extends Fragment {
     }
 
     public String getDataFromSharedPrefernces(String key) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("UserDetails", MODE_PRIVATE);
         return sharedPreferences.getString(key,"");
     }
 
     void storeDataInSharedPrefernces(String key, String value) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("UserDetails", MODE_PRIVATE);
         SharedPreferences.Editor  editor= sharedPreferences.edit();
         editor.putString(key,value);
         editor.apply();

@@ -325,7 +325,7 @@ public class EditNoteFragment extends Fragment {
                 });
         for (Uri uri : selectedFileUris) {
             // Get the file name from the URI
-            String fileName = getFileNameFromUri(getContext(), uri);
+            String fileName = getFileNameFromUri(getActivity().getApplicationContext(), uri);
 
             // Create a reference to the destination location in Firebase Storage
             StorageReference fileRef = storageRef.child( userId+"/"+taskId+"/"+"notes/"+noteId+"/"+fileName);
@@ -376,11 +376,14 @@ public class EditNoteFragment extends Fragment {
                                         progressBar_ll.setVisibility(View.GONE);
                                         file_et.setText(uploadedFileNames);
 //                                        Toast.makeText(getContext(),uploadedFileUrls.toString(), Toast.LENGTH_LONG).show();
-                                        Toast.makeText(getContext(),"Files uploaded successfully", Toast.LENGTH_LONG).show();
+                                        if(getContext() != null) {
+                                            Toast.makeText(getContext(), "Files uploaded successfully", Toast.LENGTH_LONG).show();
+                                        }
                                         Log.d("Uploads", "File URLs: " + uploadedFileUrls.toString());
+                                        performSubmission(view, true);
                                     }
 
-                                    performSubmission(view, true);
+//                                    performSubmission(view, true);
                                 }
                             }
                         });
@@ -397,17 +400,19 @@ public class EditNoteFragment extends Fragment {
     @SuppressLint("Range")
     private static String getFileNameFromUri(Context context, Uri uri) {
         String fileName = "";
-        String scheme = uri.getScheme();
+        if(context != null) {
+            String scheme = uri.getScheme();
 
-        if (scheme != null) {
-            if (scheme.equals(ContentResolver.SCHEME_CONTENT)) {
-                Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                    cursor.close();
+            if (scheme != null) {
+                if (scheme.equals(ContentResolver.SCHEME_CONTENT)) {
+                    Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                        cursor.close();
+                    }
+                } else if (scheme.equals(ContentResolver.SCHEME_FILE)) {
+                    fileName = new File(uri.getPath()).getName();
                 }
-            } else if (scheme.equals(ContentResolver.SCHEME_FILE)) {
-                fileName = new File(uri.getPath()).getName();
             }
         }
 
@@ -463,7 +468,7 @@ public class EditNoteFragment extends Fragment {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
-                                                        Toast.makeText(getContext(), "Note edited Successfully", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getActivity().getApplicationContext(), "Note edited Successfully", Toast.LENGTH_LONG).show();
                                                         Intent intent= new Intent(getActivity(), DashboardActivity.class);
                                                         intent.putExtra("DesFragment","ViewNotes");
                                                         getActivity().startActivity(intent);

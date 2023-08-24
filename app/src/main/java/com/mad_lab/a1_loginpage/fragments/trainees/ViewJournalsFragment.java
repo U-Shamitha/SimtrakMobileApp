@@ -168,7 +168,7 @@ public class ViewJournalsFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                    ArrayList<Map<String, Object>> journals= (ArrayList<Map<String, Object>>) documentSnapshot.get("journals");
+                    ArrayList<Map<String, Object>> journals= (ArrayList<Map<String, Object>>) documentSnapshot.get("journals") !=null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("journals") : new ArrayList<>();
                     Log.d(TAG, "documentSnapshotJournalsData: "+documentSnapshot.get("journals"));
 
                     String[] priorities = {"0-2 days", "3-7 days", "over 7 days"};
@@ -268,7 +268,9 @@ public class ViewJournalsFragment extends Fragment {
                             Collections.reverse(journalArrayList);
                             desSort=false;
                         }
-                        journalArrAdapter.notifyDataSetChanged();
+                        journalArrAdapter = new RecyclerJournalAdapter(getContext(), journalArrayList);
+                        journalRecyclerView.setAdapter(journalArrAdapter);
+
                         return true;
 
                     case R.id.journalLearnings_sort:
@@ -283,7 +285,9 @@ public class ViewJournalsFragment extends Fragment {
                             Collections.reverse(journalArrayList);
                             desSort=false;
                         }
-                        journalArrAdapter.notifyDataSetChanged();
+                        journalArrAdapter = new RecyclerJournalAdapter(getContext(), journalArrayList);
+                        journalRecyclerView.setAdapter(journalArrAdapter);
+
                         return true;
 
                     case R.id.journalPendings_sort:
@@ -298,7 +302,9 @@ public class ViewJournalsFragment extends Fragment {
                             Collections.reverse(journalArrayList);
                             desSort=false;
                         }
-                        journalArrAdapter.notifyDataSetChanged();
+                        journalArrAdapter = new RecyclerJournalAdapter(getContext(), journalArrayList);
+                        journalRecyclerView.setAdapter(journalArrAdapter);
+
                         return true;
 
                     case R.id.journalAdminRemarks_sort:
@@ -313,7 +319,9 @@ public class ViewJournalsFragment extends Fragment {
                             Collections.reverse(journalArrayList);
                             desSort=false;
                         }
-                        journalArrAdapter.notifyDataSetChanged();
+                        journalArrAdapter = new RecyclerJournalAdapter(getContext(), journalArrayList);
+                        journalRecyclerView.setAdapter(journalArrAdapter);
+
                         return true;
 
                     case R.id.journalLeaderRemarks_sort:
@@ -328,7 +336,9 @@ public class ViewJournalsFragment extends Fragment {
                             Collections.reverse(journalArrayList);
                             desSort=false;
                         }
-                        journalArrAdapter.notifyDataSetChanged();
+                        journalArrAdapter = new RecyclerJournalAdapter(getContext(), journalArrayList);
+                        journalRecyclerView.setAdapter(journalArrAdapter);
+
                         return true;
 
                     default:
@@ -360,7 +370,7 @@ public class ViewJournalsFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                    ArrayList<Map<String, Object>> journals= (ArrayList<Map<String, Object>>) documentSnapshot.get("journals");
+                    ArrayList<Map<String, Object>> journals= (ArrayList<Map<String, Object>>) documentSnapshot.get("journals") != null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("journals") : new ArrayList<>();
                     Log.d(TAG, "documentSnapshotJournalsData: "+documentSnapshot.get("journals"));
                     Log.d(TAG, "journals: "+journals);
 

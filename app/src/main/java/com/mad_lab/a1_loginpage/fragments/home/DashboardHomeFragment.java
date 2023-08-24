@@ -146,6 +146,7 @@ public class DashboardHomeFragment extends Fragment {
                 Intent intent= new Intent(getContext().getApplicationContext(), DashboardActivity.class);
                 intent.putExtra("DesFragment","AddTask");
                 getActivity().startActivity(intent);
+                getActivity().finishAffinity();
             }
         });
 

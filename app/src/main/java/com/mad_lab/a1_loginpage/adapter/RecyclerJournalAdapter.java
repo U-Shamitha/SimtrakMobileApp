@@ -56,6 +56,10 @@ public class RecyclerJournalAdapter extends RecyclerView.Adapter<RecyclerJournal
             holder.status_iv.setImageResource(R.drawable.baseline_check_24);
             holder.status_tv.setTextColor(context.getResources().getColor(R.color.light_green));
         }
+        else{
+            holder.status_iv.setImageResource(R.drawable.process);
+            holder.status_tv.setTextColor(context.getResources().getColor(R.color.in_process_color));
+        }
 
     }
 

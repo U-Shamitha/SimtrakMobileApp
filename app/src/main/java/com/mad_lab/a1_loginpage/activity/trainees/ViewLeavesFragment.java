@@ -1,18 +1,23 @@
 package com.mad_lab.a1_loginpage.activity.trainees;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,9 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.activity.DashboardActivity;
-import com.mad_lab.a1_loginpage.adapter.RecyclerJournalAdapter;
 import com.mad_lab.a1_loginpage.adapter.RecyclerLeavesAdapter;
-import com.mad_lab.a1_loginpage.model.JournalModel;
 import com.mad_lab.a1_loginpage.model.LeavesModel;
 
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-public class ViewLeavesActivity extends AppCompatActivity {
+public class ViewLeavesFragment extends Fragment {
 
     ImageButton leaveFilter_btn;
     ImageButton addLeave_btn;
@@ -56,19 +59,21 @@ public class ViewLeavesActivity extends AppCompatActivity {
     boolean desSort = false;
     FirebaseFirestore fstore;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_leaves);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_view_leaves, container, false);
 
-        leaveFilter_btn = findViewById(R.id.leaveFilter_btn);
-        addLeave_btn = findViewById(R.id.addLeave_btn);
-        search_ll = findViewById(R.id.search_ll);
-        searchLeave = findViewById(R.id.search_leave);
-        search_iv = findViewById(R.id.search_iv);
-        leavesRecyclerView = findViewById(R.id.leaves_recyclerView);
+        leaveFilter_btn = view.findViewById(R.id.leaveFilter_btn);
+        addLeave_btn = view.findViewById(R.id.addLeave_btn);
+        search_ll = view.findViewById(R.id.search_ll);
+        searchLeave = view.findViewById(R.id.search_leave);
+        search_iv = view.findViewById(R.id.search_iv);
+        leavesRecyclerView = view.findViewById(R.id.leaves_recyclerView);
 
-        leavesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        leavesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         leaveArrayList = new ArrayList<>();
 
         fstore = FirebaseFirestore.getInstance();
@@ -104,7 +109,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchLeave_txt = query;
-                Toast.makeText(getApplicationContext() ,"query: "+query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext().getApplicationContext() ,"query: "+query, Toast.LENGTH_SHORT).show();
                 getSearchLeavesDataFromFireStore();
                 return false;
             }
@@ -121,7 +126,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 searchLeave_txt = searchLeave_ctxt;
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 getSearchLeavesDataFromFireStore();
             }
@@ -130,21 +135,24 @@ public class ViewLeavesActivity extends AppCompatActivity {
         addLeave_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getApplicationContext(), LeaveApplyActivity.class);
+                Intent intent= new Intent(getContext().getApplicationContext(), DashboardActivity.class);
+                intent.putExtra("DesFragment","LeaveApply");
                 startActivity(intent);
-                finish();
+                getActivity().finish();
             }
         });
 
         getSearchLeavesDataFromFireStore();
 
+
+        return view;
     }
 
 
     private void getSearchLeavesDataFromFireStore() {
 
         leaveArrayList.clear();
-        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
         leavesRecyclerView.setAdapter(leaveArrAdapter);
 
         String userId = getDataFromSharedPrefernces("userId");
@@ -183,7 +191,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                         }
                     }
 
-                    leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                    leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                     leavesRecyclerView.setAdapter(leaveArrAdapter);
 
                 }
@@ -193,7 +201,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
     }
 
     private void showPopupMenuForJournalFilter(View v) {
-        PopupMenu filterLeavePopupMenu = new PopupMenu(getApplicationContext(), v);
+        PopupMenu filterLeavePopupMenu = new PopupMenu(getContext().getApplicationContext(), v);
         filterLeavePopupMenu.inflate(R.menu.leave_filter_menu);
 
         MenuItem checkboxItem = filterLeavePopupMenu.getMenu().findItem(R.id.revSort_cb);
@@ -206,7 +214,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
 
                 // Keep the popup menu open
                 checkboxItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-                checkboxItem.setActionView(new View(getApplicationContext()));
+                checkboxItem.setActionView(new View(getContext().getApplicationContext()));
                 MenuItemCompat.setOnActionExpandListener(checkboxItem, new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
@@ -253,7 +261,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                             Collections.reverse(leaveArrayList);
                             desSort=false;
                         }
-                        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                         leavesRecyclerView.setAdapter(leaveArrAdapter);
                         return true;
 
@@ -268,7 +276,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                             Collections.reverse(leaveArrayList);
                             desSort=false;
                         }
-                        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                         leavesRecyclerView.setAdapter(leaveArrAdapter);
                         return true;
 
@@ -284,7 +292,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                             Collections.reverse(leaveArrayList);
                             desSort=false;
                         }
-                        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                         leavesRecyclerView.setAdapter(leaveArrAdapter);
                         return true;
 
@@ -300,7 +308,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                             Collections.reverse(leaveArrayList);
                             desSort=false;
                         }
-                        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                         leavesRecyclerView.setAdapter(leaveArrAdapter);
                         return true;
 
@@ -316,7 +324,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                             Collections.reverse(leaveArrayList);
                             desSort=false;
                         }
-                        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                         leavesRecyclerView.setAdapter(leaveArrAdapter);
                         return true;
 
@@ -330,14 +338,14 @@ public class ViewLeavesActivity extends AppCompatActivity {
     }
 
     public String getDataFromSharedPrefernces(String key) {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("UserDetails", MODE_PRIVATE);
         return sharedPreferences.getString(key,"");
     }
 
     private void getFilterLeavesDataFromFireStore(String filterType, String filterOption) {
 
         leaveArrayList.clear();
-        leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+        leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
         leavesRecyclerView.setAdapter(leaveArrAdapter);
 
         String userId = getDataFromSharedPrefernces("userId");
@@ -364,7 +372,7 @@ public class ViewLeavesActivity extends AppCompatActivity {
                         Collections.reverse(leaveArrayList);
                         desSort=false;
                     }
-                    leaveArrAdapter = new RecyclerLeavesAdapter(getApplicationContext(), leaveArrayList);
+                    leaveArrAdapter = new RecyclerLeavesAdapter(getContext().getApplicationContext(), leaveArrayList);
                     leavesRecyclerView.setAdapter(leaveArrAdapter);
                     leaveArrAdapter.notifyDataSetChanged();
 
@@ -373,4 +381,6 @@ public class ViewLeavesActivity extends AppCompatActivity {
 
         }
     }
+
+
 }

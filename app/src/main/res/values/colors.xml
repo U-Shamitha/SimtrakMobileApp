@@ -15,4 +15,5 @@
     <color name="red">#EF1616</color>
     <color name="dark_red">#A50202</color>
     <color name="dark_orange">#FF5722</color>
+    <color name="in_process_color">#051EAA</color>
 </resources>
