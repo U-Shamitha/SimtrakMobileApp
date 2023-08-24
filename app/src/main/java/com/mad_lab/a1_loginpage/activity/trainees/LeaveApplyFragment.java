@@ -217,7 +217,7 @@ public class LeaveApplyFragment extends Fragment {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.d(TAG, "leave data uploaded to firestore");
-                                            Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                                            Intent intent = new Intent(getContext(), DashboardActivity.class);
                                             intent.putExtra("DesFragment", "ViewLeaves");
                                             startActivity(intent);
                                             getActivity().finish();

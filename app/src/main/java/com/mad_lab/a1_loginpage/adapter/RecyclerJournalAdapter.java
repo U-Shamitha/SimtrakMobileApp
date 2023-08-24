@@ -87,7 +87,7 @@ public class RecyclerJournalAdapter extends RecyclerView.Adapter<RecyclerJournal
             learnings_tv = itemView.findViewById(R.id.learnings_tv);
             pendings_tv = itemView.findViewById(R.id.pendings_tv);
             adminRemarks = itemView.findViewById(R.id.adminRemarks_tv);
-            leaderRemaerks = itemView.findViewById(R.id.learnings_tv);
+            leaderRemaerks = itemView.findViewById(R.id.leaderRemarks_tv);
 
         }
     }

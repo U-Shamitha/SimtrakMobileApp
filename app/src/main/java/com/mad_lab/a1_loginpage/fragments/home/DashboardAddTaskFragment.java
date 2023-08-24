@@ -226,6 +226,7 @@ public class DashboardAddTaskFragment extends Fragment {
                                 String taskId = sdtf.format(new Date());
                                 Map<String, Object> task = new HashMap<>();
                                 task.put("taskId", taskId);
+                                task.put("taskStatus", "Ongoing");
                                 task.put("taskName", taskName);
                                 task.put("taskPriority", selectedItemIndex);
                                 task.put("taskType", taskType);

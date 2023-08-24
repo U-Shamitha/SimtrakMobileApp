@@ -165,7 +165,7 @@ public class ViewLeavesFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                    ArrayList<Map<String, Object>> leaves = (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves");
+                    ArrayList<Map<String, Object>> leaves = (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves") != null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves") : new ArrayList<>();
                     Log.d(TAG, "documentSnapshotJournalsData: "+documentSnapshot.get("leaves"));
 
 
@@ -357,7 +357,7 @@ public class ViewLeavesFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                    ArrayList<Map<String, Object>> leaves= (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves");
+                    ArrayList<Map<String, Object>> leaves= (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves") != null ? (ArrayList<Map<String, Object>>) documentSnapshot.get("leaves") : new ArrayList<>();
                     Log.d(TAG, "documentSnapshotJournalsData: "+documentSnapshot.get("leaves"));
                     Log.d(TAG, "leaves: "+leaves);
 
