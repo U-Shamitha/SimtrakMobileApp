@@ -58,6 +58,10 @@ public class RecyclerLeavesAdapter extends RecyclerView.Adapter<RecyclerLeavesAd
             holder.status_iv.setImageResource(R.drawable.baseline_check_24);
             holder.status_tv.setTextColor(context.getResources().getColor(R.color.light_green));
         }
+        else{
+            holder.status_iv.setImageResource(R.drawable.process);
+            holder.status_tv.setTextColor(context.getResources().getColor(R.color.in_process_color));
+        }
 
         if(!leave.reasonForLeave.equals("") && !leave.reasonForLeave.equals("null")){
             holder.reason_ll.setVisibility(View.VISIBLE);

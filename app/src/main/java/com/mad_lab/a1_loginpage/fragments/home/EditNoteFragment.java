@@ -290,7 +290,7 @@ public class EditNoteFragment extends Fragment {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         String userId = getUserIdFromSharedPrefernces("userId");
-        StorageReference folderRef = storageRef.child( userId+"/"+taskId+"/"+"notes/"+noteId);
+        StorageReference folderRef = storageRef.child( userId+"/tasks/"+taskId+"/"+"notes/"+noteId);
         // List all items (files) in the folder
         folderRef.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
@@ -328,7 +328,7 @@ public class EditNoteFragment extends Fragment {
             String fileName = getFileNameFromUri(getActivity().getApplicationContext(), uri);
 
             // Create a reference to the destination location in Firebase Storage
-            StorageReference fileRef = storageRef.child( userId+"/"+taskId+"/"+"notes/"+noteId+"/"+fileName);
+            StorageReference fileRef = storageRef.child( userId+"/tasks/"+taskId+"/"+"notes/"+noteId+"/"+fileName);
 
             // Upload the file to Firebase Storage
             UploadTask uploadTask = fileRef.putFile(uri);

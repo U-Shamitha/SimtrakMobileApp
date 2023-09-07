@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,9 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.mad_lab.a1_loginpage.R;
 import com.mad_lab.a1_loginpage.activity.DashboardActivity;
 import com.mad_lab.a1_loginpage.adapter.RecyclerJournalAdapter;
-import com.mad_lab.a1_loginpage.adapter.RecyclerTaskDetailsAdapter;
 import com.mad_lab.a1_loginpage.model.JournalModel;
-import com.mad_lab.a1_loginpage.model.TaskDetailsModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,7 +64,7 @@ public class ViewJournalsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_journal, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_journal, container, false);
 
         journalFilter_btn = view.findViewById(R.id.journalFilter_btn);
         addJournal_btn = view.findViewById(R.id.add_journal_bt);

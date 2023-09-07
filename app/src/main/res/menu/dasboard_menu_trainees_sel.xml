@@ -43,7 +43,17 @@
         <item
             android:id="@+id/leaves"
             android:title="Leaves"
-            android:icon="@drawable/baseline_work_off_24"/>
+            android:icon="@drawable/baseline_work_off_24" />
+
+        <item
+            android:id="@+id/final_report"
+            android:title="Final Report"
+            android:icon="@drawable/baseline_summarize_24"/>
+
+        <item
+            android:id="@+id/weeklyReview"
+            android:title="Weekly Review"
+            android:icon="@drawable/baseline_reviews_24"/>
 
     </group>
 

@@ -37,23 +37,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Your Leaves"
+                        android:text="Your Daily journals"
                         android:textColor="@color/my_primary_color"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageButton
-                        android:id="@+id/leaveFilter_btn"
+                        android:id="@+id/journalFilter_btn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/addLeave_btn"
+                        android:layout_toLeftOf="@id/add_journal_bt"
                         android:backgroundTint="@android:color/transparent"
                         android:src="@drawable/ic_baseline_filter_alt_24"
                         app:tint="@color/my_primary_color" />
 
                     <ImageButton
-                        android:id="@+id/addLeave_btn"
+                        android:id="@+id/add_journal_bt"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -80,13 +80,13 @@
                         android:layout_marginLeft="20dp"/>
 
                     <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_leave"
+                        android:id="@+id/search_journal"
                         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:iconifiedByDefault="false"
                         app:searchIcon="@null"
-                        app:queryHint="Search Leaves" />
+                        app:queryHint="Search Journals" />
 
                 </LinearLayout>
 
@@ -95,7 +95,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/leaves_recyclerView"
+            android:id="@+id/dailyJournal_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"

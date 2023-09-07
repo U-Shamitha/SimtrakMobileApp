@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+    <item
+        android:id="@+id/finalReportStatus_sort"
+        android:title="Status" >
+        <menu>
+            <item
+                android:id="@+id/finalReportStatusInProcess_sort"
+                android:title="In Process" />
+            <item
+                android:id="@+id/finalReportStatusApproved_sort"
+                android:title="Approved" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/fileName_sort"
+        android:title="File Name"/>
+    <item
+        android:id="@+id/uploadedOn_sort"
+        android:title="Uploaded On"/>
+
+</menu>

@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage.activity.trainees;
+package com.mad_lab.a1_loginpage.fragments.trainees;
 
 import static android.content.Context.MODE_PRIVATE;
 

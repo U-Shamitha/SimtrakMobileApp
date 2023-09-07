@@ -76,7 +76,7 @@
                         android:background="@drawable/round_border"
                         android:foregroundTint="@color/my_primary_color"
                         app:iconifiedByDefault="false"
-                        app:queryHint="Search your notes" />
+                        app:queryHint="Search note links" />
 
                 </LinearLayout>
 

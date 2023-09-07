@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/revSort_cb"
+        android:title="Reverse order"
+        android:checkable="true" />
+    <item
+        android:id="@+id/weeklyReviewStatus_sort"
+        android:title="Status" >
+        <menu>
+            <item
+                android:id="@+id/weeklyReviewStatusInProcess_sort"
+                android:title="In Process" />
+            <item
+                android:id="@+id/weeklyReviewStatusApproved_sort"
+                android:title="Approved" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/week_sort"
+        android:title="Week"/>
+    <item
+        android:id="@+id/remarks_sort"
+        android:title="Remarks"/>
+    <item
+        android:id="@+id/stamp_sort"
+        android:title="Stamp"/>
+
+</menu>

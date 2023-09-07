@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,10 +22,10 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mad_lab.a1_loginpage.R;
-import com.mad_lab.a1_loginpage.activity.trainees.LeaveApplyActivity;
-import com.mad_lab.a1_loginpage.activity.trainees.LeaveApplyFragment;
-import com.mad_lab.a1_loginpage.activity.trainees.ViewLeavesActivity;
-import com.mad_lab.a1_loginpage.activity.trainees.ViewLeavesFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.LeaveApplyFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.UploadFinalReportFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.ViewFinalReportsFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.ViewLeavesFragment;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteFragment;
 import com.mad_lab.a1_loginpage.fragments.home.AddNoteLinkFragment;
 import com.mad_lab.a1_loginpage.fragments.home.DashboardAddTaskFragment;
@@ -38,6 +39,7 @@ import com.mad_lab.a1_loginpage.fragments.home.ViewNotesFragment;
 import com.mad_lab.a1_loginpage.fragments.profile.ProfileProfile3Fragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.AddJournalFragment;
 import com.mad_lab.a1_loginpage.fragments.trainees.ViewJournalsFragment;
+import com.mad_lab.a1_loginpage.fragments.trainees.ViewWeeklyReviewsFragment;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -121,6 +123,10 @@ public class DashboardActivity extends AppCompatActivity {
                 loadFragment(new ViewLeavesFragment());
             }else if ("LeaveApply".equals(fragmentType)) {
                 loadFragment(new LeaveApplyFragment());
+            }else if ("ViewFinalReports".equals(fragmentType)) {
+                loadFragment(new ViewFinalReportsFragment());
+            }else if ("UploadFinalReport".equals(fragmentType)) {
+                loadFragment(new UploadFinalReportFragment());
             }
         }else{
             loadFragment();
@@ -198,6 +204,13 @@ public class DashboardActivity extends AppCompatActivity {
                     selected_page_tv.setText("Leaves");
 //                    startActivity(new Intent(DashboardActivity.this, ViewLeavesActivity.class));
                   loadFragment(new ViewLeavesFragment());
+                }else if(itemId==R.id.final_report){
+                  selected_page_tv.setText("Final Report");
+                  loadFragment(new ViewFinalReportsFragment());
+                }
+                else if(itemId==R.id.weeklyReview){
+                  selected_page_tv.setText("Weekly Review");
+                  loadFragment(new ViewWeeklyReviewsFragment());
                 }
                 else if(itemId==R.id.task_management){
                     Toast.makeText(DashboardActivity.this, "Management", Toast.LENGTH_SHORT).show();
@@ -231,9 +244,11 @@ public class DashboardActivity extends AppCompatActivity {
 
                     isHomeSelected = false;
                     isTraineesSelected = false;
+
                     drawerLayout.closeDrawer(GravityCompat.START);
                     navigationView.getMenu().clear();
                     navigationView.inflateMenu(R.menu.dasboard_menu_items);
+
 
                 }
 
@@ -314,6 +329,17 @@ public class DashboardActivity extends AppCompatActivity {
             finish();
         }
         else if(fragment instanceof ViewLeavesFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof UploadFinalReportFragment){
+            Intent intent= new Intent(this, DashboardActivity.class);
+            intent.putExtra("DesFragment","ViewFinalReports");
+            startActivity(intent);
+            finish();
+        }
+        else if(fragment instanceof ViewFinalReportsFragment){
             Intent intent= new Intent(this, DashboardActivity.class);
             startActivity(intent);
             finish();

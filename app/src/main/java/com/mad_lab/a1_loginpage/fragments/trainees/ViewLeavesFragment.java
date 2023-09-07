@@ -1,4 +1,4 @@
-package com.mad_lab.a1_loginpage.activity.trainees;
+package com.mad_lab.a1_loginpage.fragments.trainees;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -64,7 +64,7 @@ public class ViewLeavesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_view_leaves, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_leaves, container, false);
 
         leaveFilter_btn = view.findViewById(R.id.leaveFilter_btn);
         addLeave_btn = view.findViewById(R.id.addLeave_btn);
